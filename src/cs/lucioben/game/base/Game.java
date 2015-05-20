@@ -21,14 +21,13 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
-import cs.lucioben.game.GameObjects.Square;
- 
 public class Game {
 	
 	private static int screenWidth = 800;
 	private static int screenHeight = 600;
 	private static String title = "openGl Game";
 	private static Game context;
+	private static FPSCounter fpsCounter = FPSCounter.getInstance(); 
 	
 	public State state;
 	
@@ -51,7 +50,7 @@ public class Game {
 		}
 	}
 	
-	private void gameLoop() {
+	private void gameLoop() {		
 		//Game loop
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
@@ -64,6 +63,8 @@ public class Game {
 		}
 		ArrayList<GameObject> GameObjectList = this.state.hasNext() ? this.state.next().getSceneObjects() : new ArrayList<GameObject>();
 		while(!Display.isCloseRequested()){
+			fpsCounter.updateFPS();
+			
 			GameObjectList = state.getCurrentScene().getSceneObjects();
 			System.out.println(this.state.getCurrentScene().toString());
 			
@@ -71,28 +72,16 @@ public class Game {
 			
 			for(GameObject GameObj : GameObjectList) {
 				GameObj.update();
+
+				/*
+				 *TODO Do this command for each game object.
+		  		glBindTexture(GL_TEXTURE_2D, redTex);
+				*/
+				
 				GL11.glBegin(GL11.GL_QUADS);
 					GameObj.draw();
 				GL11.glEnd();
 			}
-
-			/*
-	  		glBindTexture(GL_TEXTURE_2D, redTex);
-			
-			GL11.glBegin(GL11.GL_QUADS);
-				GL11.glTexCoord2f(0, 0);
-				GL11.glVertex2i(10, screenHeight / 2 - 50);
-				
-				GL11.glTexCoord2f(1, 0);
-				GL11.glVertex2i(30, screenHeight / 2 - 50);
-				
-				GL11.glTexCoord2f(1, 1);
-				GL11.glVertex2i(30, screenHeight / 2 + 50);
-				
-				GL11.glTexCoord2f(0, 1);
-				GL11.glVertex2i(10, screenHeight / 2 + 50);
-			GL11.glEnd();
-			*/
 			
 			Display.update();
 			Display.sync(60);

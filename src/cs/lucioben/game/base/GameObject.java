@@ -1,36 +1,39 @@
 package cs.lucioben.game.base;
 
+import org.lwjgl.util.vector.Vector2f;
+
 public abstract class GameObject {
 	public int width;
 	public int height;
-	public int x;
-	public int y;
+	public Vector2f position;
+	public float rotation;
 	
 	public GameObject() {
 		this.width = 0;
 		this.height = 0;
-		this.x = 0;
-		this.y = 0;
+		this.position = new Vector2f(0,0);
+		this.rotation = 0;
 	}
 	
-	public GameObject(int width, int height, int x, int y) {
+	public GameObject(int width, int height, float rotation, Vector2f position) {
 		this.width = width;
 		this.height = height;
-		this.x = x;
-		this.y = y;
+		this.position = position;
+		this.rotation = rotation;
 	}
 	
-	public int getX() {
-		return x;
+	public Vector2f getPosition() {
+		return position;
 	}
-	public void setX(int x) {
-		this.x = x;
+	public void setPosition(int x, int y) {
+		this.position.x = x;
+		this.position.y = y;
 	}
-	public int getY() {
-		return y;
+	public float getRotation(){
+		return rotation;
 	}
-	public void setY(int y) {
-		this.y = y;
+	public void setRotation(float rotation){
+		this.rotation = rotation;
 	}
 	public int getWidth() {
 		return width;
@@ -41,5 +44,4 @@ public abstract class GameObject {
 	
 	public abstract void update();
 	public abstract void draw();
-	
 }

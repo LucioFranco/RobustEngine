@@ -1,5 +1,6 @@
 package cs.lucioben.game.scenes;
 
+import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
 
 import cs.lucioben.game.GameObjects.Square;
@@ -30,11 +31,11 @@ public class SecondScene extends Scene {
 			}
 			
 		}
-		this.add(new Square(50, 40, 100, 200));
-		this.add(new Square(-50, 50, 100, 200));
-		this.add(new Square(-70, 50, 100, 200));
-		this.add(new Square(20, 30, 100, 200));
-		this.add(new Square(80, 20, 100, 200));
+		this.add(new Square(50, 40, 0, new Vector2f(100, 200)));
+		this.add(new Square(-50, 50, 0, new Vector2f(100, 200)));
+		this.add(new Square(-70, 50, 0, new Vector2f(100, 200)));
+		this.add(new Square(20, 30, 0, new Vector2f(100, 200)));
+		this.add(new Square(80, 20, 0, new Vector2f(100, 200)));
 		this.add(new EmptyTest());
 		this.add(new TextObject("HEllo WORLD", 0, 0, Color.green));
 

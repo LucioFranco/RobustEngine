@@ -78,9 +78,18 @@ public class Game {
 		  		glBindTexture(GL_TEXTURE_2D, redTex);
 				*/
 				
+				GL11.glLoadIdentity();
+				GL11.glPushMatrix();
+
+				GL11.glTranslatef(GameObj.getPosition().x, GameObj.getPosition().y, 0);
+				GL11.glRotatef(GameObj.getRotation(), 0, 0, 1);
+				GL11.glTranslatef(-GameObj.getPosition().x, -GameObj.getPosition().y, 0);
+				
 				GL11.glBegin(GL11.GL_QUADS);
 					GameObj.draw();
 				GL11.glEnd();
+				
+				GL11.glPopMatrix();
 			}
 			
 			Display.update();

@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
 
+import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
@@ -19,7 +20,7 @@ public class TextObject extends GameObject {
 	}
 	
 	public TextObject(String str, int x, int y, Color color) {
-		super(0, 0, x, y);
+		super(0, 0, 0, new Vector2f(0,0));
 		try {
 			this.str = str;
 			this.color = color;
@@ -37,7 +38,7 @@ public class TextObject extends GameObject {
 	@Override
 	public void draw() {
 		Color.white.bind();
-		this.font.drawString(this.x, this.y, this.str, this.color);
+		this.font.drawString(this.position.x, this.position.y, this.str, this.color);
 	}
 
 }

@@ -1,4 +1,5 @@
 package cs.lucioben.game.base;
+
 /*
  * Copyright (c) 2008-2010, Matthias Mann
  *
@@ -30,6 +31,7 @@ package cs.lucioben.game.base;
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -78,7 +80,7 @@ public class PNGDecoder {
     private static final int PLTE = 0x504C5445;
     private static final int tRNS = 0x74524E53;
     private static final int IDAT = 0x49444154;
-    private static final int IEND = 0x49454E44;
+    //private static final int IEND = 0x49454E44;
     
     private static final byte COLOR_GREYSCALE = 0;
     private static final byte COLOR_TRUECOLOR = 2;
@@ -579,7 +581,7 @@ public class PNGDecoder {
     }
     
     private void unfilterUp(byte[] curLine, byte[] prevLine) {
-        final int bpp = this.bytesPerPixel;
+        //final int bpp = this.bytesPerPixel;
         for(int i=1,n=curLine.length ; i<n ; ++i) {
             curLine[i] += prevLine[i];
         }

@@ -1,9 +1,11 @@
 package cs.lucioben.game.scenes;
 
 import org.lwjgl.util.vector.Vector2f;
+import org.newdawn.slick.Color;
 
 import cs.lucioben.game.GameObjects.SceneChanger;
 import cs.lucioben.game.GameObjects.Square;
+import cs.lucioben.game.GameObjects.base.TextObject;
 import cs.lucioben.game.base.Scene;
 
 public class StartScene extends Scene {
@@ -18,5 +20,6 @@ public class StartScene extends Scene {
 		square.setRotation(45);
 		this.add(square);
 		this.add(new SceneChanger());
+		this.add(new TextObject("HELLO WORLD", 10, 10, Color.green));
 	}
 }

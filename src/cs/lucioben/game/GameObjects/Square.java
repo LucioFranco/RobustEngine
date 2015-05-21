@@ -15,23 +15,25 @@ public class Square extends GameObject {
 	@Override
 	public void update() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.position.y -= 10;
+			this.getPosition().y -= 10;
 		}else if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			this.position.x -= 10;
+			this.getPosition().x -= 10;
 		}else if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.position.y += 10;
+			this.getPosition().y += 10;
 		}else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.position.x += 10;
+			this.getPosition().x += 10;
 		}
 	}
 
 	@Override
 	public void draw() {
+		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glColor3f(0.3f, 0.8f, 0.3f);
-		GL11.glVertex2f(this.position.x, this.position.y);
-		GL11.glVertex2f(this.position.x, this.position.y + this.height);
-		GL11.glVertex2f(this.position.x + this.width, this.position.y + this.height);
-		GL11.glVertex2f(this.position.x + this.width, this.position.y);
+		GL11.glVertex2f(this.getPosition().x, this.getPosition().y);
+		GL11.glVertex2f(this.getPosition().x, this.getPosition().y + this.getHeight());
+		GL11.glVertex2f(this.getPosition().x + this.getWidth(), this.getPosition().y + this.getHeight());
+		GL11.glVertex2f(this.getPosition().x + this.getWidth(), this.getPosition().y);
+		GL11.glEnd();
 	}
 
 }

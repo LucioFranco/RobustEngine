@@ -7,7 +7,7 @@ import cs.lucioben.game.base.GameObject;
 public abstract class EmptyObject extends GameObject {
 
 	public EmptyObject() {
-		super(0, 0, 0, new Vector2f(0,0));
+		super(0, 0, 0, new Vector2f(0,0), "");
 	}
 
 	public abstract void update();

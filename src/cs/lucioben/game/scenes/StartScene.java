@@ -16,9 +16,8 @@ public class StartScene extends Scene {
 
 	@Override
 	public void setup() {
-		Square square = new Square(50, 50, 0, new Vector2f(100, 200));
-		square.setRotation(45);
-		this.add(square);
+		this.add(new Square(128, 64, 0, new Vector2f(100, 200), "res/images/AND.png"));
+		this.add(new Square(128, 64, 0, new Vector2f(100, 500), "res/images/OR.png"));
 		this.add(new SceneChanger());
 		this.add(new TextObject("HELLO WORLD", 10, 10, Color.green));
 	}

@@ -61,9 +61,9 @@ public class Game {
 			fpsCounter.updateFPS();
 			
 			GameObjectList = state.getCurrentScene().getSceneObjects();
-			
+					    
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		    
+			
 			for(GameObject GameObj : GameObjectList) {
 				GameObj.update();
 
@@ -74,7 +74,8 @@ public class Game {
 				GL11.glRotatef(GameObj.getRotation(), 0, 0, 1);
 				GL11.glTranslatef(-GameObj.getPosition().x, -GameObj.getPosition().y, 0);
 				
-				GL11.glBindTexture(GL11.GL_TEXTURE_2D, GameObj.getTexture().getTextureID());
+				//GL11.glBindTexture(GL11.GL_TEXTURE_2D, GameObj.getTexture().getTextureID());
+				GameObj.getTexture().bind();
 				
 				GameObj.draw();
 				

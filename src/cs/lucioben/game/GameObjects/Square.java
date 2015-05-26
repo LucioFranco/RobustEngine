@@ -11,6 +11,10 @@ public class Square extends GameObject {
 	public Square(int i, int j, float rotation, Vector2f position) {
 		super(i, j, rotation, position);
 	}
+	
+	public Square(int i, int j, float rotation, Vector2f position, String texture) {
+		super(i, j, rotation, position, texture);
+	}
 
 	@Override
 	public void update() {
@@ -28,10 +32,16 @@ public class Square extends GameObject {
 	@Override
 	public void draw() {
 		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glColor3f(0.3f, 0.8f, 0.3f);
+		GL11.glTexCoord2f(0,0); 
 		GL11.glVertex2f(this.getPosition().x, this.getPosition().y);
+		
+		GL11.glTexCoord2f(0,1); 
 		GL11.glVertex2f(this.getPosition().x, this.getPosition().y + this.getHeight());
+		
+		GL11.glTexCoord2f(1,1); 
 		GL11.glVertex2f(this.getPosition().x + this.getWidth(), this.getPosition().y + this.getHeight());
+		
+		GL11.glTexCoord2f(1,0); 
 		GL11.glVertex2f(this.getPosition().x + this.getWidth(), this.getPosition().y);
 		GL11.glEnd();
 	}

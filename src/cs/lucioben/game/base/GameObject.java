@@ -15,6 +15,7 @@ import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 import cs.lucioben.game.base.PNGDecoder.Format;
 
@@ -24,7 +25,7 @@ public abstract class GameObject {
 	private Vector2f position;
 	private Texture texture;
 	private float rotation;
-	private final static String DEFAULT_PATH = "res/images/defaultTexture.png";
+	private final static String DEFAULT_PATH = "res/images/AND.png";
 	
 	public GameObject() {
 		this(0,0,0,new Vector2f(0,0), DEFAULT_PATH);
@@ -44,9 +45,8 @@ public abstract class GameObject {
 	
 	private Texture loadTexture(String path){
 		try {
-			Texture t = TextureLoader.getTexture("PNG", new FileInputStream(new File(path)));
-			//Texture t = TextureLoader.getTexture("JPG", ResourceLoader.getResourceAsStream(path));
-			return t; 
+			return TextureLoader.getTexture("PNG", new FileInputStream(new File(path)));
+			//return TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(path));
 		}
 		catch (Exception e){
 			e.printStackTrace();

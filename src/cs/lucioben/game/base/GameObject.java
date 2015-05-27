@@ -12,6 +12,7 @@ public abstract class GameObject {
 	private Vector2f position;
 	private Texture texture;
 	private float rotation;
+	private boolean isPlayer;
 	private final static String DEFAULT_PATH = "res/images/defaultTexture.png";
 	
 	public GameObject() {
@@ -63,6 +64,14 @@ public abstract class GameObject {
 	}
 	public Texture getTexture(){
 		return texture; 
+	}
+	
+	public void setIsPlayer(boolean s){
+		isPlayer= s;
+	}
+	
+	public boolean getIsPlayer(){
+		return isPlayer;
 	}
 	
 	public abstract void update();

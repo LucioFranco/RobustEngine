@@ -36,16 +36,16 @@ public class Player extends GameObject {
 	public void draw() {		
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0,0); 
-		GL11.glVertex2f(this.getPosition().x, this.getPosition().y);
+		GL11.glVertex2f(0,0);
 		
 		GL11.glTexCoord2f(0,1); 
-		GL11.glVertex2f(this.getPosition().x, this.getPosition().y + this.getHeight());
-		
+		GL11.glVertex2f(0, this.getHeight());
+
 		GL11.glTexCoord2f(1,1); 
-		GL11.glVertex2f(this.getPosition().x + this.getWidth(), this.getPosition().y + this.getHeight());
+		GL11.glVertex2f(this.getWidth(), this.getHeight());
 		
 		GL11.glTexCoord2f(1,0); 
-		GL11.glVertex2f(this.getPosition().x + this.getWidth(), this.getPosition().y);
+		GL11.glVertex2f(this.getWidth(), 0);
 		GL11.glEnd();
 	}
 }

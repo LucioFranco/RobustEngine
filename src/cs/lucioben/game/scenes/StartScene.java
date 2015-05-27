@@ -5,6 +5,7 @@ import org.newdawn.slick.Color;
 
 import cs.lucioben.game.GameObjects.SceneChanger;
 import cs.lucioben.game.GameObjects.Player;
+import cs.lucioben.game.GameObjects.Wall;
 import cs.lucioben.game.GameObjects.base.TextObject;
 import cs.lucioben.game.base.Scene;
 
@@ -17,7 +18,11 @@ public class StartScene extends Scene {
 
 	@Override
 	public void setup() {
-		this.add(new Player(128, 64, 0, startingPosition));
+		Player player = new Player(128, 64, 0, startingPosition);
+		player.setIsPlayer(true);
+		
+		this.add(player);
+		this.add(new Wall(128, 64, 0, new Vector2f(250, 250), "res/images/AND.png"));
 		this.add(new SceneChanger());
 		this.add(new TextObject("HELLO WORLD", 10, 10, Color.green));
 	}

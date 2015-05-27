@@ -25,7 +25,7 @@ public abstract class GameObject {
 	private Vector2f position;
 	private Texture texture;
 	private float rotation;
-	private final static String DEFAULT_PATH = "res/images/AND.png";
+	private final static String DEFAULT_PATH = "res/images/defaultTexture.png";
 	
 	public GameObject() {
 		this(0,0,0,new Vector2f(0,0), DEFAULT_PATH);
@@ -46,7 +46,6 @@ public abstract class GameObject {
 	private Texture loadTexture(String path){
 		try {
 			return TextureLoader.getTexture("PNG", new FileInputStream(new File(path)));
-			//return TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(path));
 		}
 		catch (Exception e){
 			e.printStackTrace();

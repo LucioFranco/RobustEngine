@@ -9,15 +9,15 @@ import cs.lucioben.game.GameObjects.base.TextObject;
 import cs.lucioben.game.base.Scene;
 
 public class StartScene extends Scene {
-
+	private final Vector2f startingPosition; 
+	
 	public StartScene() {
-		// TODO Auto-generated constructor stub
+		startingPosition = new Vector2f(100, 200);
 	}
 
 	@Override
 	public void setup() {
-		this.add(new Square(128, 64, 0, new Vector2f(100, 200), "res/images/AND.png"));
-		this.add(new Square(128, 64, 0, new Vector2f(100, 500), "res/images/OR.png"));
+		this.add(new Square(128, 64, 0, startingPosition));
 		this.add(new SceneChanger());
 		this.add(new TextObject("HELLO WORLD", 10, 10, Color.green));
 	}

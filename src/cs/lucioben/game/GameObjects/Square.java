@@ -30,7 +30,7 @@ public class Square extends GameObject {
 	}
 
 	@Override
-	public void draw() {
+	public void draw() {		
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0,0); 
 		GL11.glVertex2f(this.getPosition().x, this.getPosition().y);

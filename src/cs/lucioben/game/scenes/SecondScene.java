@@ -7,9 +7,10 @@ import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.Scene;
 
 public class SecondScene extends Scene {
+	private final Vector2f startingPosition; 
 
 	public SecondScene() {
-		// TODO Auto-generated constructor stub
+		startingPosition = new Vector2f(100, 200);
 	}
 
 	@Override
@@ -29,11 +30,7 @@ public class SecondScene extends Scene {
 			}
 			
 		}
-		this.add(new Square(50, 40, 0, new Vector2f(100, 200)));
-		this.add(new Square(-50, 50, 0, new Vector2f(100, 200)));
-		this.add(new Square(-70, 50, 0, new Vector2f(100, 200)));
-		this.add(new Square(20, 30, 0, new Vector2f(100, 200)));
-		this.add(new Square(80, 20, 0, new Vector2f(100, 200)));
+		this.add(new Square(50, 40, 0, startingPosition));
 		this.add(new EmptyTest());
 	}
 

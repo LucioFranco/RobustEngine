@@ -44,7 +44,6 @@ public class TextObject extends GameObject {
 		this.font.drawString(this.getPosition().x, this.getPosition().y, this.str, this.color);
 		
 		GL11.glDisable(GL11.GL_BLEND);
-
 	}
 
 }

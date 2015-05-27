@@ -63,8 +63,12 @@ public class Game {
 			GameObjectList = state.getCurrentScene().getSceneObjects();
 					    
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+			GL11.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 			
-			for(GameObject GameObj : GameObjectList) {
+			for(GameObject GameObj : GameObjectList) {		
+				//Set the color to white by default
+				GL11.glColor3f(255, 255, 255);
+
 				GameObj.update();
 
 				GL11.glLoadIdentity();
@@ -74,9 +78,7 @@ public class Game {
 				GL11.glRotatef(GameObj.getRotation(), 0, 0, 1);
 				GL11.glTranslatef(-GameObj.getPosition().x, -GameObj.getPosition().y, 0);
 				
-				//GL11.glBindTexture(GL11.GL_TEXTURE_2D, GameObj.getTexture().getTextureID());
 				GameObj.getTexture().bind();
-				
 				GameObj.draw();
 				
 				GL11.glPopMatrix();

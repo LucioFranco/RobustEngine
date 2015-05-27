@@ -1,8 +1,6 @@
 package cs.lucioben.game.GameObjects.base;
 
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
-
 import cs.lucioben.game.base.GameObject;
 
 public abstract class EmptyObject extends GameObject {

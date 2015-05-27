@@ -4,7 +4,7 @@ import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
 
 import cs.lucioben.game.GameObjects.SceneChanger;
-import cs.lucioben.game.GameObjects.Square;
+import cs.lucioben.game.GameObjects.Player;
 import cs.lucioben.game.GameObjects.base.TextObject;
 import cs.lucioben.game.base.Scene;
 
@@ -17,7 +17,7 @@ public class StartScene extends Scene {
 
 	@Override
 	public void setup() {
-		this.add(new Square(128, 64, 0, startingPosition));
+		this.add(new Player(128, 64, 0, startingPosition));
 		this.add(new SceneChanger());
 		this.add(new TextObject("HELLO WORLD", 10, 10, Color.green));
 	}

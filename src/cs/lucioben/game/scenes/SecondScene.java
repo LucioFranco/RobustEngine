@@ -2,7 +2,7 @@ package cs.lucioben.game.scenes;
 
 import org.lwjgl.util.vector.Vector2f;
 
-import cs.lucioben.game.GameObjects.Square;
+import cs.lucioben.game.GameObjects.Player;
 import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.Scene;
 
@@ -30,7 +30,7 @@ public class SecondScene extends Scene {
 			}
 			
 		}
-		this.add(new Square(50, 40, 0, startingPosition));
+		this.add(new Player(50, 40, 0, startingPosition));
 		this.add(new EmptyTest());
 	}
 

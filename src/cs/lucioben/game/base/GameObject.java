@@ -2,22 +2,9 @@ package cs.lucioben.game.base;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
-import org.lwjgl.opengl.GL30;
-import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
-import org.newdawn.slick.util.ResourceLoader;
-
-import cs.lucioben.game.base.PNGDecoder.Format;
 
 public abstract class GameObject {
 	private int width;

@@ -6,13 +6,13 @@ import org.lwjgl.util.vector.Vector2f;
 
 import cs.lucioben.game.base.GameObject;
 
-public class Square extends GameObject {
+public class Player extends GameObject {
 
-	public Square(int i, int j, float rotation, Vector2f position) {
+	public Player(int i, int j, float rotation, Vector2f position) {
 		super(i, j, rotation, position);
 	}
 	
-	public Square(int i, int j, float rotation, Vector2f position, String texture) {
+	public Player(int i, int j, float rotation, Vector2f position, String texture) {
 		super(i, j, rotation, position, texture);
 	}
 
@@ -20,11 +20,14 @@ public class Square extends GameObject {
 	public void update() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.getPosition().y -= 10;
-		}else if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
+		}
+		else if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			this.getPosition().x -= 10;
-		}else if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
+		}
+		else if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
 			this.getPosition().y += 10;
-		}else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
+		}
+		else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			this.getPosition().x += 10;
 		}
 	}
@@ -45,5 +48,4 @@ public class Square extends GameObject {
 		GL11.glVertex2f(this.getPosition().x + this.getWidth(), this.getPosition().y);
 		GL11.glEnd();
 	}
-
 }

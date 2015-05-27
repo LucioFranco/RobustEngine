@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.TrueTypeFont;
-import org.newdawn.slick.util.ResourceLoader;
 
 public class Game {
 	
@@ -42,7 +40,7 @@ public class Game {
 		//Game loop
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, screenWidth, screenHeight, 0, 1, -1);
+		GL11.glOrtho(0, getScreenWidth(), screenHeight, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		
@@ -93,10 +91,18 @@ public class Game {
 	
 	public static Game getContext() {
 		if(Game.context == null) {
-			Game.context = new Game(Game.screenWidth, Game.screenHeight);
+			Game.context = new Game(Game.getScreenWidth(), Game.screenHeight);
 			return Game.context;
 		}else {
 			return Game.context;
 		}
+	}
+
+	public static int getScreenWidth() {
+		return screenWidth;
+	}
+
+	public static int getScreenHeight() {
+		return screenHeight;
 	}
 }

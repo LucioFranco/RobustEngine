@@ -11,7 +11,6 @@ import cs.lucioben.game.GameObjects.Player;
 import cs.lucioben.game.GameObjects.Wall;
 
 public class Game {
-	
 	private static int screenWidth = 800;
 	private static int screenHeight = 600;
 	private static String title = "openGl Game";

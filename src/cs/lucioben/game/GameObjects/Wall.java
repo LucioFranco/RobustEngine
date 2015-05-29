@@ -6,8 +6,23 @@ import org.lwjgl.util.vector.Vector2f;
 import cs.lucioben.game.base.GameObject;
 
 public class Wall extends GameObject {	
-	public Wall(int i, int j, float rotation, Vector2f position, String texture) {
-		super(i, j, rotation, position, texture);
+	private static final int WIDTH = 96;
+	private static final int HEIGHT = 96;
+	
+	public Wall(Vector2f position){
+		super(WIDTH, HEIGHT, 0, position);
+	}
+	
+	public Wall(Vector2f position, String texture) {
+		super(WIDTH, HEIGHT, 0, position, texture);
+	}
+	
+	public static int getTileWidth(){
+		return WIDTH;
+	}
+	
+	public static int getTileHeight(){
+		return HEIGHT;
 	}
 
 	@Override

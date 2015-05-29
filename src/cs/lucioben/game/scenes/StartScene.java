@@ -8,29 +8,19 @@ import cs.lucioben.game.GameObjects.base.TextObject;
 import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.Scene;
 
-public class StartScene extends Scene {	
-	public StartScene() {
-	}
+public class StartScene extends Scene {
 
 	@Override
 	public void setup() {
-		Player player = new Player(128, 64, 0, new Vector2f(0,0));
-	
-		Vector2f startingPosition = new Vector2f(0,0);
-		player.setPosition(startingPosition);
+		Player player = new Player(128, 64, 0, new Vector2f(200,0));
 		player.setType(0);
-		
-		this.add(player);
-		
-		Wall wall = new Wall(128, 64, 0, new Vector2f(100, 100), "res/images/AND.png");
-		wall.setType(1);
-		
-		this.add(wall);
-		this.add(new SceneChanger());
-		
+
 		TextObject text = new TextObject("HELLO WORLD", 10, 10);
 		text.setType(2);
 		
+		this.loadAssets("res/assets0.txt", this);
+		this.add(player);
 		this.add(text);
+		this.add(new SceneChanger());
 	}
 }

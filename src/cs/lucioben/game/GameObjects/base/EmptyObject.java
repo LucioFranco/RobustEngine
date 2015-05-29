@@ -7,6 +7,7 @@ public abstract class EmptyObject extends GameObject {
 
 	public EmptyObject() {
 		super(0, 0, 0, new Vector2f(0,0));
+		super.setType(-1);
 	}
 
 	public abstract void update();

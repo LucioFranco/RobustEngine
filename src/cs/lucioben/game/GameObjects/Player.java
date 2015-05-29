@@ -18,7 +18,7 @@ public class Player extends GameObject {
 	}
 
 	@Override
-	public void update() {			
+	public void update() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			this.getPosition().y -= 10;
 		}

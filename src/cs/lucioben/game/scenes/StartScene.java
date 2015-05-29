@@ -15,12 +15,10 @@ public class StartScene extends Scene {
 		Player player = new Player(128, 64, 0, new Vector2f(200,0));
 		player.setType(0);
 
-		TextObject text = new TextObject("HELLO WORLD", 10, 10);
-		text.setType(2);
+		TextObject text = new TextObject("HELLO WORLD", new Vector2f(10, 10));
 		
 		this.loadAssets("res/assets0.txt", this);
 		this.add(player);
 		this.add(text);
-		this.add(new SceneChanger());
 	}
 }

@@ -16,20 +16,29 @@ public class TextObject extends GameObject {
 	private TrueTypeFont font;
 	private String str;
 	private Color color;
-	public TextObject(String str, int x, int y) {
-		this(str, x, y, Color.white);
+	private float size;
+	
+	public TextObject(String str, Vector2f pos) {
+		this(str, pos, Color.white, 24f);
 	}
 	
-	public TextObject(String str, int x, int y, Color color) {
-		super(0, 0, 0, new Vector2f(x,y));
+	public TextObject(String str, Vector2f pos, Color color) {
+		this(str, pos, color, 24f);
+	}
+	
+	public TextObject(String str, Vector2f pos, Color color, float size) {
+		super(0, 0, 0, pos);
+		super.setType(2);
 		try {
 			this.str = str;
 			this.color = color;
-			this.font = new TrueTypeFont(Font.createFont(Font.TRUETYPE_FONT, ResourceLoader.getResourceAsStream("/res/fonts/Plump.ttf")).deriveFont(24f), true);
+			this.size = size;
+			this.font = new TrueTypeFont(Font.createFont(Font.TRUETYPE_FONT, ResourceLoader.getResourceAsStream("/res/fonts/Plump.ttf")).deriveFont(size), true);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
 
 	@Override
 	public void update() {
@@ -41,9 +50,12 @@ public class TextObject extends GameObject {
 		GL11.glEnable(GL11.GL_BLEND);
 	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
-		this.font.drawString(this.getPosition().x, this.getPosition().y, this.str, this.color);
+		this.font.drawString(this.getPosition().x - this.font.getWidth(this.str), this.getPosition().y - this.font.getHeight(this.str), this.str, this.color);
 		
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 
+	public float getSize() {
+		return this.size;
+	}
 }

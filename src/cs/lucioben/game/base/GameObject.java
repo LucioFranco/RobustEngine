@@ -12,6 +12,7 @@ public abstract class GameObject {
 	private Vector2f position;
 	private Texture texture;
 	private float rotation;
+	private int type = -1;
 	private final static String DEFAULT_PATH = "res/images/defaultTexture.png";
 	
 	public GameObject() {
@@ -45,9 +46,12 @@ public abstract class GameObject {
 	public Vector2f getPosition() {
 		return position;
 	}
-	public void setPosition(int x, int y) {
+	public void setPosition(float x, float y) {
 		this.position.x = x;
 		this.position.y = y;
+	}
+	public void setPosition(Vector2f position){
+		this.position = position;
 	}
 	public float getRotation(){
 		return rotation;
@@ -64,6 +68,21 @@ public abstract class GameObject {
 	public Texture getTexture(){
 		return texture; 
 	}
+	
+	public void setType(int t){
+		type = t;
+	}
+	
+	public int getType(){
+		return type;
+	}
+	
+	/*
+	 * Types:
+	 * 0 - Player
+	 * 1 - Wall
+	 * 2 - HUD/Text
+	 */
 	
 	public abstract void update();
 	public abstract void draw();

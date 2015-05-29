@@ -19,14 +19,12 @@ public class SecondScene extends Scene {
 
 			@Override
 			public void update() {
-				System.out.println("Hello");
-				
+				// TODO Auto-generated method stub
 			}
 
 			@Override
 			public void draw() {
 				// TODO Auto-generated method stub
-				
 			}
 			
 		}

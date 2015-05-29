@@ -3,9 +3,7 @@ package cs.lucioben.game.scenes;
 import org.lwjgl.util.vector.Vector2f;
 import cs.lucioben.game.GameObjects.SceneChanger;
 import cs.lucioben.game.GameObjects.Player;
-import cs.lucioben.game.GameObjects.Wall;
 import cs.lucioben.game.GameObjects.base.TextObject;
-import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.Scene;
 
 public class StartScene extends Scene {

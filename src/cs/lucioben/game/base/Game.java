@@ -86,16 +86,16 @@ public class Game {
 
 				switch(GameObj.getType()){
 					case 0:{
+						//Pass the current object list to the player, so they can check for collision.
+						((Player)GameObj).detectCollision(GameObjectList);
+						
 						//Set the cameraOffset to the characters position.
 						cameraOffset = new Vector2f(GameObj.getPosition().x - screenOffset.x, GameObj.getPosition().y - screenOffset.y);
 
 						//Draw the character in the center of the screen.
 						GL11.glTranslatef(GameObj.getPosition().x - cameraOffset.x, GameObj.getPosition().y - cameraOffset.y, 0);
-
-						//Pass the current object list to the player, so they can check for collision.
-						((Player)GameObj).detectCollision(GameObjectList);
-
 					}
+
 					break;
 					case 1:{
 						GL11.glTranslatef(((Wall)GameObj).getScreenPosition(cameraOffset).x, ((Wall)GameObj).getScreenPosition(cameraOffset).y, 0);

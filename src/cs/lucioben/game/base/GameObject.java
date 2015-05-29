@@ -53,6 +53,12 @@ public abstract class GameObject {
 	public void setPosition(Vector2f position){
 		this.position = position;
 	}
+	public void setPositionY(float y){
+		this.position.y = y;
+	}
+	public void setPositionX(float x){
+		this.position.x = x;
+	}
 	public float getRotation(){
 		return rotation;
 	}

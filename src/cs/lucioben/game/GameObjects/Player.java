@@ -8,6 +8,7 @@ import cs.lucioben.game.base.GameObject;
 
 public class Player extends GameObject {
 	private boolean isColliding = false;
+	private Vector2f previousPosition;
 	
 	public Player(int i, int j, float rotation, Vector2f position) {
 		super(i, j, rotation, position);
@@ -18,21 +19,23 @@ public class Player extends GameObject {
 	}
 
 	@Override
-	public void update() {
+	public void update() {	
+		previousPosition = new Vector2f(this.getPosition());
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.getPosition().y -= 10;
+			this.setPositionY(this.getPosition().y - 10);
 		}
 		else if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			this.getPosition().x -= 10;
+			this.setPositionX(this.getPosition().x - 10);
 		}
 		else if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.getPosition().y += 10;
+			this.setPositionY(this.getPosition().y + 10);
 		}
 		else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			this.getPosition().x += 10;
+			this.setPositionX(this.getPosition().x + 10);
 		}
 	}
-	
+		
 	public void detectCollision(ArrayList<GameObject> GameObjectList){		
 		for(GameObject GameObj : GameObjectList) {	
 			//If it is not a player or HUD object
@@ -42,7 +45,7 @@ public class Player extends GameObject {
 					this.getPosition().y < GameObj.getPosition().y + GameObj.getHeight() &&
 					this.getPosition().y + this.getHeight() > GameObj.getPosition().y){
 					
-					System.out.println("Collision!");
+					this.setPosition(previousPosition);
 				}
 			}
 		}

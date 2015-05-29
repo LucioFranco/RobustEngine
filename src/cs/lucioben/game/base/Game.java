@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
 import cs.lucioben.game.GameObjects.Player;
+import cs.lucioben.game.GameObjects.Wall;
 
 public class Game {
 	
@@ -18,6 +19,7 @@ public class Game {
 	private static FPSCounter fpsCounter = FPSCounter.getInstance(); 
 	private static ArrayList<GameObject> GameObjectList;
 	private static Vector2f cameraOffset;
+	private static Vector2f screenOffset;
 		
 	public State state;
 	
@@ -60,7 +62,9 @@ public class Game {
 		}
 		else{
 			 GameObjectList = new ArrayList<GameObject>();
-		}
+		}		
+		
+		setScreenOffset();
 		
 		while(!Display.isCloseRequested()){
 			fpsCounter.updateFPS();
@@ -78,20 +82,24 @@ public class Game {
 				GL11.glLoadIdentity();
 				GL11.glPushMatrix();
 
-				//If it is not the main character or a HUD object
-				if(!((GameObj.getType() == 0) || GameObj.getType() == 2)){
-					//Place it at it's position with the camera offset
-					GL11.glTranslatef(GameObj.getPosition().x - cameraOffset.x, GameObj.getPosition().y - cameraOffset.y, 0);
-				}
-				else if(GameObj.getType() == 0){
-					//Set the cameraOffset to the characters position.
-					cameraOffset = GameObj.getPosition();
-					
-					//Draw the character in the center of the screen.
-					GL11.glTranslatef(Game.getScreenWidth()/2 - GameObj.getWidth()/2, Game.getScreenHeight()/2 - GameObj.getHeight()/2, 0);
-					
-					//Pass the current object list to the player, so they can check for collision.
-					((Player)GameObj).detectCollision(GameObjectList);
+				switch(GameObj.getType()){
+					case 0:{
+						//Set the cameraOffset to the characters position.
+						cameraOffset = new Vector2f(GameObj.getPosition().x - screenOffset.x, GameObj.getPosition().y - screenOffset.y);
+						
+						//Draw the character in the center of the screen.
+						GL11.glTranslatef(GameObj.getPosition().x - cameraOffset.x, GameObj.getPosition().y - cameraOffset.y, 0);
+						
+						//Pass the current object list to the player, so they can check for collision.
+						((Player)GameObj).detectCollision(GameObjectList);
+						
+					} 
+					break;
+					case 1:{
+						GL11.glTranslatef(((Wall)GameObj).getScreenPosition(cameraOffset).x, ((Wall)GameObj).getScreenPosition(cameraOffset).y, 0);
+					} 
+					break;
+					default:{}
 				}
 				
 				GL11.glRotatef(GameObj.getRotation(), 0, 0, 1);
@@ -109,9 +117,17 @@ public class Game {
 		Display.destroy();
 	}
 	
+	private void setScreenOffset(){
+		for(GameObject GameObj : GameObjectList) {	
+			if(GameObj.getType() == 0){
+				screenOffset = new Vector2f(Game.getScreenWidth()/2 - GameObj.getWidth()/2, Game.getScreenHeight()/2 - GameObj.getHeight()/2);
+			}
+		}
+	}
+	
 	public static Game getContext() {
 		if(Game.context == null){
-			Game.context = new Game(Game.getScreenWidth(), Game.screenHeight);
+			Game.context = new Game(Game.getScreenWidth(), Game.getScreenHeight());
 			return Game.context;
 		}
 		else{

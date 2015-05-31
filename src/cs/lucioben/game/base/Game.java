@@ -7,9 +7,6 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
-import cs.lucioben.game.GameObjects.Player;
-import cs.lucioben.game.GameObjects.Wall;
-
 public class Game {
 
 	private static int screenWidth = 900;
@@ -70,7 +67,7 @@ public class Game {
 			fpsCounter.updateFPS();
 
 			GameObjectList = state.getCurrentScene().getSceneObjects();
-			if (this.screenOffset == null)
+			if (Game.screenOffset == null)
 				setScreenOffset();
 
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);

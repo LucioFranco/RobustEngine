@@ -5,12 +5,12 @@ import org.lwjgl.util.vector.Vector2f;
 
 import cs.lucioben.game.base.GameObject;
 
-public class Wall extends GameObject {	
+public class Floor extends GameObject {	
 	private static final int WIDTH = 96;
 	private static final int HEIGHT = 96;
 	
-	public Wall(Vector2f position){
-		super(WIDTH, HEIGHT, 0, position, "res/images/wall.png");
+	public Floor(Vector2f position){
+		super(WIDTH, HEIGHT, 0, position, "res/images/floor.png");
 	}
 	
 	public static int getTileWidth(){

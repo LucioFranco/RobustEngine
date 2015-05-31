@@ -3,7 +3,10 @@ package cs.lucioben.game.base;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import org.lwjgl.util.vector.Vector2f;
+
+import cs.lucioben.game.GameObjects.Floor;
 import cs.lucioben.game.GameObjects.Wall;
 
 public abstract class Scene {
@@ -54,6 +57,10 @@ public abstract class Scene {
 						Wall wall = new Wall(new Vector2f(Wall.getTileWidth() * i, Wall.getTileHeight() * lineCount));
 						wall.setType(1);
 						scene.add(wall);
+					}else if(v[i] == '`') {
+						Floor floor = new Floor(new Vector2f(Floor.getTileWidth() * i, Floor.getTileHeight() * lineCount));
+						floor.setType(3);
+						scene.add(floor);
 					}
 				}
 				

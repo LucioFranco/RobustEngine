@@ -12,7 +12,7 @@ import cs.lucioben.game.GameObjects.Wall;
 
 public class Game {
 
-	private static int screenWidth = 800;
+	private static int screenWidth = 900;
 	private static int screenHeight = 600;
 	private static String title = "openGl Game";
 	private static Game context;
@@ -85,7 +85,7 @@ public class Game {
 				GL11.glPushMatrix();
 
 				switch(GameObj.getType()){
-					case 0:{
+					case 0:
 						//Pass the current object list to the player, so they can check for collision.
 						((Player)GameObj).detectCollision(GameObjectList);
 						
@@ -94,14 +94,17 @@ public class Game {
 
 						//Draw the character in the center of the screen.
 						GL11.glTranslatef(GameObj.getPosition().x - cameraOffset.x, GameObj.getPosition().y - cameraOffset.y, 0);
-					}
-
-					break;
-					case 1:{
-						GL11.glTranslatef(((Wall)GameObj).getScreenPosition(cameraOffset).x, ((Wall)GameObj).getScreenPosition(cameraOffset).y, 0);
-					}
-					break;
-					default:{}
+						break;
+					case 1:
+						GL11.glTranslatef(GameObj.getScreenPosition(cameraOffset).x, GameObj.getScreenPosition(cameraOffset).y, 0);
+						break;
+					case 2:
+						break;
+					case 3:
+						GL11.glTranslatef(GameObj.getScreenPosition(cameraOffset).x, GameObj.getScreenPosition(cameraOffset).y, 0);
+						break;
+					default:
+						break;
 				}
 
 				GL11.glRotatef(GameObj.getRotation(), 0, 0, 1);

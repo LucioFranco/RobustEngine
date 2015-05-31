@@ -39,6 +39,10 @@ public class TextObject extends GameObject {
 		}
 	}
 	
+	public TrueTypeFont getFont() {
+		return this.font;
+	}
+	
 
 	@Override
 	public void update() {
@@ -50,7 +54,7 @@ public class TextObject extends GameObject {
 		GL11.glEnable(GL11.GL_BLEND);
 	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		
-		this.font.drawString(this.getPosition().x - this.font.getWidth(this.str), this.getPosition().y - this.font.getHeight(this.str), this.str, this.color);
+		this.font.drawString(this.getPosition().x, this.getPosition().y, this.str, this.color);
 		
 		GL11.glDisable(GL11.GL_BLEND);
 	}

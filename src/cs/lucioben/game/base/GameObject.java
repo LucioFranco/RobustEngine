@@ -83,6 +83,15 @@ public abstract class GameObject {
 		return type;
 	}
 	
+	/**
+	 * Will not work with player
+	 * @param cameraOffset
+	 * @return
+	 */
+	public Vector2f getScreenPosition(Vector2f cameraOffset){
+		return new Vector2f(this.getPosition().x - cameraOffset.x, this.getPosition().y - cameraOffset.y);
+	}
+	
 	/*
 	 * Types:
 	 * 0 - Player

@@ -10,10 +10,10 @@ public class StartScene extends Scene {
 
 	@Override
 	public void setup() {
-		Player player = new Player(128, 64, 0, new Vector2f(200,0));
+		Player player = new Player(64, 64, 0, new Vector2f(200, 100), "res/images/player.png");
 		player.setType(0);
 
-		TextObject text = new TextObject("HELLO WORLD", new Vector2f(10, 10));
+		TextObject text = new TextObject("Level 1", new Vector2f(10, 10));
 		
 		this.loadAssets("res/assets0.txt", this);
 		this.add(player);

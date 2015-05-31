@@ -86,9 +86,6 @@ public class Game {
 
 				switch(GameObj.getType()){
 					case 0:
-						//Pass the current object list to the player, so they can check for collision.
-						((Player)GameObj).detectCollision(GameObjectList);
-
 						//Set the cameraOffset to the characters position.
 						cameraOffset = new Vector2f(GameObj.getPosition().x - screenOffset.x, GameObj.getPosition().y - screenOffset.y);
 

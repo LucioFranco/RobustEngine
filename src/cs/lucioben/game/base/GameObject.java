@@ -95,8 +95,10 @@ public abstract class GameObject {
 	/*
 	 * Types:
 	 * 0 - Player
-	 * 1 - Wall
+	 * 1 - Wall - Collision
 	 * 2 - HUD/Text
+	 * 3 - Wall - No collision
+	 * 4 - Bullet
 	 */
 	
 	public abstract void update();

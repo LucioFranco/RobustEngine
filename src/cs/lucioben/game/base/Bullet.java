@@ -1,48 +1,41 @@
 package cs.lucioben.game.base;
 
-public class Bullet{
-	/*
-	private static int bulletCounter = 0;
-	private int localIndex = 0;
-	private GameObject bullet;
-	private Vector3 velocity; 
-	private float rotation;
-	private readonly int DAMAGE = 100;
-	private readonly float SPEED = 15f; 
-	
-	public Bullet(Vector2 startingPosition, float a, GameObject bulletObject){
-		bullet = GameObject.Instantiate(bulletObject);
-		bullet.transform.position = startingPosition;
-		bullet.transform.rotation = Quaternion.AngleAxis(a, Vector3.forward);
-		
-		SpriteRenderer renderer = bullet.GetComponentInChildren<SpriteRenderer> ();
-		renderer.sortingOrder = 1;
-		renderer.sortingLayerName = "Bullet";
-		
-		rotation = bullet.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
-		velocity = new Vector2((float)Mathf.Cos(rotation), (float)Mathf.Sin(rotation)); 
-		bulletCounter++;
-		localIndex = bulletCounter;
-	}
-	
-	public void Update(){
-		bullet.transform.position += velocity * SPEED * Time.deltaTime;
-	}
-	
-	public Vector2 getPosition(){	
-		return bullet.transform.position;
-	}
-	
-	public GameObject getObject(){
-		return bullet;
-	}
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Vector2f;
 
-	public int getIndex(){
-		return localIndex;
-	}
+public class Bullet extends GameObject{
+	private final float SPEED = 10f; 
+	private static final int WIDTH = 4;
+	private static final int HEIGHT = 10;
+	private Vector2f velocity;
+	
+	public Bullet(Vector2f startingPosition, float rotation){
+		super(WIDTH, HEIGHT, 0, startingPosition);
 
-	public int getDamage(){
-		return DAMAGE;
+		this.setRotation(-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)));
+		velocity = new Vector2f((float)Math.cos(Math.toRadians(rotation)), (float)Math.sin(Math.toRadians(rotation))); 
 	}
-	*/
+	
+	@Override
+	public void update() {
+		this.setPosition(new Vector2f(this.getPosition().x + velocity.x * SPEED, this.getPosition().y + velocity.y * SPEED));
+	}
+	
+	@Override
+	public void draw() {
+		GL11.glBegin(GL11.GL_QUADS);
+		GL11.glTexCoord2f(0,0); 
+		GL11.glVertex2f(-this.getWidth()/2, -this.getHeight()/2);
+		
+		GL11.glTexCoord2f(0,1); 
+		GL11.glVertex2f(-this.getWidth()/2, this.getHeight()/2);
+
+		GL11.glTexCoord2f(1,1); 
+		GL11.glVertex2f(this.getWidth()/2, this.getHeight()/2);
+		
+		GL11.glTexCoord2f(1,0); 
+		GL11.glVertex2f(this.getWidth()/2, -this.getHeight()/2);
+		GL11.glEnd();
+	}
 }

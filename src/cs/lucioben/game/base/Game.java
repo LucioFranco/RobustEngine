@@ -75,7 +75,7 @@ public class Game {
 
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 			GL11.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
+			
 			for(GameObject GameObj : GameObjectList) {
 				GameObj.update();
 
@@ -101,6 +101,7 @@ public class Game {
 						GL11.glTranslatef(GameObj.getScreenPosition(cameraOffset).x, GameObj.getScreenPosition(cameraOffset).y, 0);
 						break;
 					default:
+						GL11.glTranslatef(GameObj.getScreenPosition(cameraOffset).x, GameObj.getScreenPosition(cameraOffset).y, 0);
 						break;
 				}
 

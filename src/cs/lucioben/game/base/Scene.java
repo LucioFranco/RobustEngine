@@ -22,7 +22,14 @@ public abstract class Scene {
 	}
 
 	public void add(GameObject obj) {
-		this.SceneObjects.add(obj);
+		ArrayList<GameObject> newList = new ArrayList<>();
+		
+		for(GameObject g : SceneObjects){
+			newList.add(g);
+		}
+		
+		newList.add(obj);
+		SceneObjects = newList;
 	}
 	
 	public void remove(GameObject obj){

@@ -88,7 +88,7 @@ public class Game {
 					case 0:
 						//Pass the current object list to the player, so they can check for collision.
 						((Player)GameObj).detectCollision(GameObjectList);
-						
+
 						//Set the cameraOffset to the characters position.
 						cameraOffset = new Vector2f(GameObj.getPosition().x - screenOffset.x, GameObj.getPosition().y - screenOffset.y);
 
@@ -125,9 +125,13 @@ public class Game {
 	private void setScreenOffset(){
 		for(GameObject GameObj : GameObjectList) {
 			if(GameObj.getType() == 0){
-				screenOffset = new Vector2f(Game.getScreenWidth()/2 - GameObj.getWidth()/2, Game.getScreenHeight()/2 - GameObj.getHeight()/2);
+				screenOffset = new Vector2f(Game.getScreenWidth()/2, Game.getScreenHeight()/2);
 			}
 		}
+	}
+
+	public static Scene getCurrentScene(){
+		return Game.getContext().state.getCurrentScene();
 	}
 
 	public static Game getContext() {

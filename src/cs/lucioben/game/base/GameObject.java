@@ -101,4 +101,8 @@ public abstract class GameObject {
 	
 	public abstract void update();
 	public abstract void draw();
+	
+	public Vector2f getScreenPosition(Vector2f cameraOffset){
+		return new Vector2f(this.getPosition().x - cameraOffset.x, this.getPosition().y - cameraOffset.y);
+	}
 }

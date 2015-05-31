@@ -14,7 +14,7 @@ public class StartScene extends Scene {
 		player.setType(0);
 
 		TextObject text = new TextObject("Level 1", new Vector2f(10, 10));
-		
+
 		this.loadAssets("res/assets0.txt", this);
 		this.add(player);
 		this.add(text);

@@ -10,7 +10,7 @@ public class StartScene extends Scene {
 
 	@Override
 	public void setup() {
-		Player player = new Player(128, 64, 0, new Vector2f(200,0));
+		Player player = new Player(64, 64, 0, new Vector2f(200,0));
 		player.setType(0);
 
 		TextObject text = new TextObject("HELLO WORLD", 10, 10);

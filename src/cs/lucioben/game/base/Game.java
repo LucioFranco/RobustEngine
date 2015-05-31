@@ -83,15 +83,12 @@ public class Game {
 
 				switch(GameObj.getType()){
 					case 0:{
-						//Pass the current object list to the player, so they can check for collision.
-						((Player)GameObj).detectCollision(GameObjectList);
-						
 						//Set the cameraOffset to the characters position.
 						cameraOffset = new Vector2f(GameObj.getPosition().x - screenOffset.x, GameObj.getPosition().y - screenOffset.y);
 						
 						//Draw the character in the center of the screen.
 						GL11.glTranslatef(GameObj.getPosition().x - cameraOffset.x, GameObj.getPosition().y - cameraOffset.y, 0);
-						
+						GL11.glRotatef(GameObj.getRotation(), 0, 0, 1);
 					} 
 					break;
 					case 1:{
@@ -101,7 +98,6 @@ public class Game {
 					default:{}
 				}
 				
-				GL11.glRotatef(GameObj.getRotation(), 0, 0, 1);
 				
 				GameObj.getTexture().bind();
 				GameObj.draw();
@@ -119,9 +115,13 @@ public class Game {
 	private void setScreenOffset(){
 		for(GameObject GameObj : GameObjectList) {	
 			if(GameObj.getType() == 0){
-				screenOffset = new Vector2f(Game.getScreenWidth()/2 - GameObj.getWidth()/2, Game.getScreenHeight()/2 - GameObj.getHeight()/2);
+				screenOffset = new Vector2f(Game.getScreenWidth()/2, Game.getScreenHeight()/2);
 			}
 		}
+	}
+	
+	public static Scene getCurrentScene(){
+		return Game.getContext().state.getCurrentScene();
 	}
 	
 	public static Game getContext() {

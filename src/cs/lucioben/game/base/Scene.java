@@ -21,6 +21,10 @@ public abstract class Scene {
 	public void add(GameObject obj) {
 		this.SceneObjects.add(obj);
 	}
+	
+	public void remove(GameObject obj){
+		this.SceneObjects.remove(obj);
+	}
 
 	public ArrayList<GameObject> getSceneObjects() {
 		return SceneObjects;

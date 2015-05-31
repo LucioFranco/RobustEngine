@@ -35,7 +35,7 @@ public class Player extends GameObject {
 			setPosition(new Vector2f(1,0), SPEED);
 		}
 
-		this.setRotation(-(float)(Math.atan2(Mouse.getY() - Game.getScreenWidth()/2, Mouse.getX() - Game.getScreenHeight()/2) * (180/Math.PI)));
+		this.setRotation(-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)));
 	}
 		
 	public void setPosition(Vector2f direction, int distance){	

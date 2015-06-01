@@ -54,16 +54,15 @@ public class Game {
 			System.err.println("You have not passed any scenes");
 		}
 
-		if(this.state.hasNext()){
+		if(this.state.hasNext()) {
 			GameObjectList = this.state.next().getSceneObjects();
-		}
-		else{
+		}else {
 			GameObjectList = new ArrayList<GameObject>();
 		}
 
 		setScreenOffset();
 
-		while(!Display.isCloseRequested()){
+		while(!Display.isCloseRequested()) {
 			fpsCounter.updateFPS();
 
 			GameObjectList = state.getCurrentScene().getSceneObjects();
@@ -82,19 +81,20 @@ public class Game {
 				GL11.glPushMatrix();
 
 				switch(GameObj.getType()){
-					case 0:
+					case PLAYER:
+						
 						//Set the cameraOffset to the characters position.
 						cameraOffset = new Vector2f(GameObj.getPosition().x - screenOffset.x, GameObj.getPosition().y - screenOffset.y);
 
 						//Draw the character in the center of the screen.
 						GL11.glTranslatef(GameObj.getPosition().x - cameraOffset.x, GameObj.getPosition().y - cameraOffset.y, 0);
 						break;
-					case 1:
+					case COLLISON:
 						GL11.glTranslatef(GameObj.getScreenPosition(cameraOffset).x, GameObj.getScreenPosition(cameraOffset).y, 0);
 						break;
-					case 2:
+					case TEXT:
 						break;
-					case 3:
+					case NON_COLLISON:
 						GL11.glTranslatef(GameObj.getScreenPosition(cameraOffset).x, GameObj.getScreenPosition(cameraOffset).y, 0);
 						break;
 					default:
@@ -119,7 +119,7 @@ public class Game {
 
 	private void setScreenOffset(){
 		for(GameObject GameObj : GameObjectList) {
-			if(GameObj.getType() == 0){
+			if(GameObj.getType().equals(GameObjectType.PLAYER)){
 				screenOffset = new Vector2f(Game.getScreenWidth()/2, Game.getScreenHeight()/2);
 			}
 		}

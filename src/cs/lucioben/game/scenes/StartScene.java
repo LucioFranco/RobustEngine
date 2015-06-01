@@ -2,6 +2,7 @@ package cs.lucioben.game.scenes;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import cs.lucioben.game.GameObjects.Enemy;
 import cs.lucioben.game.GameObjects.Player;
 import cs.lucioben.game.GameObjects.base.MapTile;
 import cs.lucioben.game.GameObjects.base.TextObject;

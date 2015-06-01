@@ -87,7 +87,6 @@ public abstract class Scene {
 					
 					for(int i = 0; i < v.length; i++){
 						MapTile tile = this.MapKeywords.get("" + v[i]);
-						System.out.println(this.MapKeywords.get("" + v[i]));
 						if(tile != null) {
 							tile.setPosition(new Vector2f(tile.getWidth() * i, tile.getHeight() * lineCount));
 							this.SceneObjects.add(0, tile.clone());	

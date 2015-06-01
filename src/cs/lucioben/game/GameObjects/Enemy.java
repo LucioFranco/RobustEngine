@@ -1,29 +1,31 @@
 package cs.lucioben.game.GameObjects;
 
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
-
-import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
 
 public class Enemy extends GameObject{
-	private final float SPEED = 10f; 
+	private final float SPEED = 4f; 
 	private static final int WIDTH = 16;
 	private static final int HEIGHT = 16;
-	private Vector2f velocity;
+	private Vector2f velocity = new Vector2f(0,0);
+	private Player player; 
 	
-	public Enemy(Vector2f startingPosition){
+	public Enemy(Vector2f startingPosition, Player player){
 		super(WIDTH, HEIGHT, 0, startingPosition);
+		this.player = player;
 	}
 	
 	@Override
-	public void update() {		
-		velocity = new Vector2f((float)Math.cos(Math.toRadians(this.getRotation())), (float)Math.sin(Math.toRadians(this.getRotation()))); 
+	public void update() {				
+		float tx = player.getPosition().x - this.getPosition().x;
+		float ty = player.getPosition().y - this.getPosition().y;
+		float dist = (float)Math.sqrt(tx * tx + ty * ty);
+		velocity.x = (tx/dist) * SPEED;
+		velocity.y = (ty/dist) * SPEED;
 		
-		this.setRotation(-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)));
-		this.setPosition(new Vector2f(this.getPosition().x + velocity.x * SPEED, this.getPosition().y + velocity.y * SPEED));
-
+		this.setRotation(-(float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
+		this.setPosition(new Vector2f(this.getPosition().x + velocity.x, this.getPosition().y + velocity.y));
 	}
 	
 	@Override

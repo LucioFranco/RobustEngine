@@ -37,6 +37,7 @@ public class State implements Iterator {
 			this.currentScene = sceneList[index - 1];
 			System.out.println(sceneList[index - 1].getClass().getName());
 			this.currentScene.setup();
+			this.currentScene.loadAssets();
 			return this.currentScene;
 		}
 	}

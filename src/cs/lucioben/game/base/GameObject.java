@@ -2,11 +2,12 @@ package cs.lucioben.game.base;
 
 import java.io.File;
 import java.io.FileInputStream;
+
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
-public abstract class GameObject {
+public abstract class GameObject implements Cloneable {
 	private int width;
 	private int height;
 	private Vector2f position;
@@ -90,6 +91,15 @@ public abstract class GameObject {
 	 */
 	public Vector2f getScreenPosition(Vector2f cameraOffset){
 		return new Vector2f(this.getPosition().x - cameraOffset.x, this.getPosition().y - cameraOffset.y);
+	}
+	
+	public GameObject clone() {
+		try {
+			return (GameObject) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	/*

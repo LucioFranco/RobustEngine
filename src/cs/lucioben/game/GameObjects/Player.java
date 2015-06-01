@@ -10,7 +10,7 @@ import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
 
 public class Player extends GameObject {
-	private final int SPEED = 10;
+	private final float SPEED = 10;
 	private boolean isColliding = false;
 	private boolean mouseClicked = false;
 	
@@ -49,7 +49,7 @@ public class Player extends GameObject {
 		Game.getCurrentScene().add(new Bullet(this.getPosition(), this.getRotation()));
 	}
 		
-	public void setPosition(Vector2f direction, int distance){	
+	public void setPosition(Vector2f direction, float distance){	
 		Vector2f futurePosition = this.getPosition();
 		Vector2f previousPosition = this.getPosition();
 		

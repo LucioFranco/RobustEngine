@@ -2,10 +2,13 @@ package cs.lucioben.game.GameObjects;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
+
+import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
+import cs.lucioben.game.base.GameObjectType;
 
 public class Enemy extends GameObject{
-	private final float SPEED = 4f; 
+	private final float SPEED = 2; 
 	private static final int WIDTH = 16;
 	private static final int HEIGHT = 16;
 	private Vector2f velocity = new Vector2f(0,0);
@@ -25,7 +28,38 @@ public class Enemy extends GameObject{
 		velocity.y = (ty/dist) * SPEED;
 		
 		this.setRotation(-(float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
-		this.setPosition(new Vector2f(this.getPosition().x + velocity.x, this.getPosition().y + velocity.y));
+		this.setPosition(velocity, SPEED);
+	}
+	
+	public void setPosition(Vector2f direction, float distance){	
+		Vector2f futurePosition = this.getPosition();
+		Vector2f previousPosition = this.getPosition();
+		
+		while(distance > 0){
+			previousPosition = futurePosition;
+			futurePosition = new Vector2f(futurePosition.x + direction.x, futurePosition.y + direction.y);
+			
+			boolean collision = false;
+			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
+				if(GameObj.getType().equals(GameObjectType.COLLISON) && GameObj != this){
+					if( futurePosition.x - this.getWidth()/2 < GameObj.getPosition().x + GameObj.getWidth()/2 &&
+						futurePosition.x + this.getWidth()/2 > GameObj.getPosition().x - GameObj.getWidth()/2 &&
+						futurePosition.y - this.getHeight()/2 < GameObj.getPosition().y + GameObj.getHeight()/2 &&
+						futurePosition.y + this.getHeight()/2 > GameObj.getPosition().y - GameObj.getHeight()/2){
+						
+						collision = true;
+					}
+				}
+			}
+			
+			if(collision){
+				break;
+			}
+			
+			distance--;
+		}
+		
+		this.setPosition(previousPosition);
 	}
 	
 	@Override

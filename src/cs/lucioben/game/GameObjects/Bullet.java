@@ -6,12 +6,14 @@ import org.lwjgl.util.vector.Vector2f;
 
 import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
+import cs.lucioben.game.base.GameObjectType;
 
 public class Bullet extends GameObject{
 	private final float SPEED = 75f; 
 	private static final int WIDTH = 4;
 	private static final int HEIGHT = 10;
 	private Vector2f velocity;
+	private boolean alive = true; 
 	
 	public Bullet(Vector2f startingPosition, float rotation){
 		super(WIDTH, HEIGHT, 0, startingPosition);
@@ -22,7 +24,43 @@ public class Bullet extends GameObject{
 	
 	@Override
 	public void update() {
-		this.setPosition(new Vector2f(this.getPosition().x + velocity.x * SPEED, this.getPosition().y + velocity.y * SPEED));
+		this.setPosition(velocity, SPEED);
+		
+		if(!alive){
+			Game.getCurrentScene().remove(this);
+		}
+	}
+	
+	public void setPosition(Vector2f direction, float distance){	
+		Vector2f futurePosition = this.getPosition();
+		Vector2f previousPosition = this.getPosition();
+		
+		while(distance > 0){
+			previousPosition = futurePosition;
+			futurePosition = new Vector2f(futurePosition.x + direction.x, futurePosition.y + direction.y);
+			
+			boolean collision = false;
+			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
+				if(GameObj.getType().equals(GameObjectType.COLLISON)){
+					if( futurePosition.x - this.getWidth()/2 < GameObj.getPosition().x + GameObj.getWidth()/2 &&
+						futurePosition.x + this.getWidth()/2 > GameObj.getPosition().x - GameObj.getWidth()/2 &&
+						futurePosition.y - this.getHeight()/2 < GameObj.getPosition().y + GameObj.getHeight()/2 &&
+						futurePosition.y + this.getHeight()/2 > GameObj.getPosition().y - GameObj.getHeight()/2){
+						
+						collision = true;
+					}
+				}
+			}
+			
+			if(collision){
+				alive = false;
+				break;
+			}
+			
+			distance--;
+		}
+		
+		this.setPosition(previousPosition);
 	}
 	
 	@Override

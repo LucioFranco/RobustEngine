@@ -33,7 +33,14 @@ public abstract class Scene {
 	}
 	
 	public void remove(GameObject obj){
-		this.SceneObjects.remove(obj);
+		ArrayList<GameObject> newList = new ArrayList<>();
+		
+		for(GameObject g : SceneObjects){
+			newList.add(g);
+		}
+		
+		newList.remove(obj);
+		SceneObjects = newList;
 	}
 
 	public ArrayList<GameObject> getSceneObjects() {

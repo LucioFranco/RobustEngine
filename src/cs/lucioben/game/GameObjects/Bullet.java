@@ -1,8 +1,11 @@
-package cs.lucioben.game.base;
+package cs.lucioben.game.GameObjects;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
+
+import cs.lucioben.game.base.Game;
+import cs.lucioben.game.base.GameObject;
 
 public class Bullet extends GameObject{
 	private final float SPEED = 10f; 

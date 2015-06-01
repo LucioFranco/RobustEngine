@@ -7,6 +7,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
+import cs.lucioben.game.base.GameObjectType;
 
 public class Player extends GameObject {
 	private final int SPEED = 10;
@@ -58,7 +59,7 @@ public class Player extends GameObject {
 			
 			boolean collision = false;
 			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
-				if(GameObj.getType() == 1){
+				if(GameObj.getType().equals(GameObjectType.COLLISON)){
 					if( futurePosition.x - this.getWidth()/2 < GameObj.getPosition().x + GameObj.getWidth()/2 &&
 						futurePosition.x + this.getWidth()/2 > GameObj.getPosition().x - GameObj.getWidth()/2 &&
 						futurePosition.y - this.getHeight()/2 < GameObj.getPosition().y + GameObj.getHeight()/2 &&

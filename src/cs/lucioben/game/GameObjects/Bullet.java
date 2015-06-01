@@ -8,7 +8,7 @@ import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
 
 public class Bullet extends GameObject{
-	private final float SPEED = 10f; 
+	private final float SPEED = 75f; 
 	private static final int WIDTH = 4;
 	private static final int HEIGHT = 10;
 	private Vector2f velocity;

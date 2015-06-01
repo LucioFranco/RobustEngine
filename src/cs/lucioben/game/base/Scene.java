@@ -66,11 +66,11 @@ public abstract class Scene {
 				for(int i = 0; i < v.length; i++){
 					if(v[i] == '-'){
 						Wall wall = new Wall(new Vector2f(Wall.getTileWidth() * i, Wall.getTileHeight() * lineCount));
-						wall.setType(1);
+						wall.setType(GameObjectType.COLLISON);
 						scene.add(wall);
 					}else if(v[i] == '`') {
 						Floor floor = new Floor(new Vector2f(Floor.getTileWidth() * i, Floor.getTileHeight() * lineCount));
-						floor.setType(3);
+						floor.setType(GameObjectType.NON_COLLISON);
 						scene.add(floor);
 					}
 				}

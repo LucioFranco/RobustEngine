@@ -12,7 +12,7 @@ public abstract class GameObject {
 	private Vector2f position;
 	private Texture texture;
 	private float rotation;
-	private int type = -1;
+	private GameObjectType type = GameObjectType.NO_TYPE;
 	private final static String DEFAULT_PATH = "res/images/defaultTexture.png";
 	
 	public GameObject() {
@@ -75,11 +75,11 @@ public abstract class GameObject {
 		return texture; 
 	}
 	
-	public void setType(int t){
+	public void setType(GameObjectType t){
 		type = t;
 	}
 	
-	public int getType(){
+	public GameObjectType getType(){
 		return type;
 	}
 	

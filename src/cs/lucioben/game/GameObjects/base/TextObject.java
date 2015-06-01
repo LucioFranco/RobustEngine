@@ -11,6 +11,7 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
 
 import cs.lucioben.game.base.GameObject;
+import cs.lucioben.game.base.GameObjectType;
 
 public class TextObject extends GameObject {
 	private TrueTypeFont font;
@@ -28,7 +29,7 @@ public class TextObject extends GameObject {
 	
 	public TextObject(String str, Vector2f pos, Color color, float size) {
 		super(0, 0, 0, pos);
-		super.setType(2);
+		super.setType(GameObjectType.TEXT);
 		try {
 			this.str = str;
 			this.color = color;

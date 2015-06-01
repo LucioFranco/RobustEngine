@@ -9,8 +9,8 @@ import cs.lucioben.game.base.GameObjectType;
 
 public class Enemy extends GameObject{
 	private final float SPEED = 2; 
-	private static final int WIDTH = 16;
-	private static final int HEIGHT = 16;
+	private static final int WIDTH = 96;
+	private static final int HEIGHT = 96;
 	private float health = 100;
 	private Vector2f velocity = new Vector2f(0,0);
 	private Player player; 
@@ -29,8 +29,7 @@ public class Enemy extends GameObject{
 		velocity.x = (tx/dist) * SPEED;
 		velocity.y = (ty/dist) * SPEED;
 		
-		this.setRotation(-(float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
-		this.setPosition(velocity, SPEED);
+		this.setRotation((float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
 		
 		if(health <= 0){
 			Game.getCurrentScene().remove(this);
@@ -39,37 +38,6 @@ public class Enemy extends GameObject{
 	
 	public void takeDamage(float amount){
 		health -= amount;
-	}
-	
-	public void setPosition(Vector2f direction, float distance){	
-		Vector2f futurePosition = this.getPosition();
-		Vector2f previousPosition = this.getPosition();
-		
-		while(distance > 0){
-			previousPosition = futurePosition;
-			futurePosition = new Vector2f(futurePosition.x + direction.x, futurePosition.y + direction.y);
-			
-			boolean collision = false;
-			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
-				if(GameObj.getType().equals(GameObjectType.COLLISON) && GameObj != this){
-					if( futurePosition.x - this.getWidth()/2 < GameObj.getPosition().x + GameObj.getWidth()/2 &&
-						futurePosition.x + this.getWidth()/2 > GameObj.getPosition().x - GameObj.getWidth()/2 &&
-						futurePosition.y - this.getHeight()/2 < GameObj.getPosition().y + GameObj.getHeight()/2 &&
-						futurePosition.y + this.getHeight()/2 > GameObj.getPosition().y - GameObj.getHeight()/2){
-						
-						collision = true;
-					}
-				}
-			}
-			
-			if(collision){
-				break;
-			}
-			
-			distance--;
-		}
-		
-		this.setPosition(previousPosition);
 	}
 	
 	@Override

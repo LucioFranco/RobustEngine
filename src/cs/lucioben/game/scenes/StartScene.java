@@ -20,7 +20,6 @@ public class StartScene extends Scene {
 
 		
 		Enemy enemy = new Enemy(new Vector2f(200, 400), player);
-		enemy.setType(GameObjectType.COLLISON);
 		this.add(enemy);
 
 		TextObject text = new TextObject("Level 1", new Vector2f(10, 10));

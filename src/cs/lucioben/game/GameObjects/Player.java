@@ -46,7 +46,7 @@ public class Player extends GameObject {
 	}
 	
 	public void shoot(){
-		Game.getCurrentScene().add(new Bullet(this.getPosition(), this.getRotation()));
+		Game.getCurrentScene().add(new Bullet(this.getPosition(), this.getRotation(), 50.0f));
 	}
 		
 	public void setPosition(Vector2f direction, float distance){	

@@ -14,12 +14,15 @@ public class Bullet extends GameObject{
 	private static final int HEIGHT = 10;
 	private Vector2f velocity;
 	private boolean alive = true; 
+	private float damage;
 	
-	public Bullet(Vector2f startingPosition, float rotation){
+	public Bullet(Vector2f startingPosition, float rotation, float damage){
 		super(WIDTH, HEIGHT, 0, startingPosition);
 
 		this.setRotation(-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)));
+		this.setType(GameObjectType.TEMP_OBJECT);
 		velocity = new Vector2f((float)Math.cos(Math.toRadians(rotation)), (float)Math.sin(Math.toRadians(rotation))); 
+		this.damage = damage; 
 	}
 	
 	@Override
@@ -29,6 +32,10 @@ public class Bullet extends GameObject{
 		if(!alive){
 			Game.getCurrentScene().remove(this);
 		}
+	}
+	
+	public float getDamage(){
+		return damage;
 	}
 	
 	public void setPosition(Vector2f direction, float distance){	
@@ -41,13 +48,18 @@ public class Bullet extends GameObject{
 			
 			boolean collision = false;
 			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
-				if(GameObj.getType().equals(GameObjectType.COLLISON)){
+				if(GameObj.getType().equals(GameObjectType.COLLISON) || GameObj.getType().equals(GameObjectType.ENEMY)){
 					if( futurePosition.x - this.getWidth()/2 < GameObj.getPosition().x + GameObj.getWidth()/2 &&
 						futurePosition.x + this.getWidth()/2 > GameObj.getPosition().x - GameObj.getWidth()/2 &&
 						futurePosition.y - this.getHeight()/2 < GameObj.getPosition().y + GameObj.getHeight()/2 &&
 						futurePosition.y + this.getHeight()/2 > GameObj.getPosition().y - GameObj.getHeight()/2){
 						
 						collision = true;
+						
+						if(GameObj.getType().equals(GameObjectType.ENEMY)){
+							Enemy e = (Enemy)GameObj;
+							e.takeDamage(this.getDamage());
+						}
 					}
 				}
 			}

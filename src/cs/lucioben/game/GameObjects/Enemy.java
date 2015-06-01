@@ -11,11 +11,13 @@ public class Enemy extends GameObject{
 	private final float SPEED = 2; 
 	private static final int WIDTH = 16;
 	private static final int HEIGHT = 16;
+	private float health = 100;
 	private Vector2f velocity = new Vector2f(0,0);
 	private Player player; 
 	
 	public Enemy(Vector2f startingPosition, Player player){
 		super(WIDTH, HEIGHT, 0, startingPosition);
+		this.setType(GameObjectType.ENEMY);
 		this.player = player;
 	}
 	
@@ -29,6 +31,14 @@ public class Enemy extends GameObject{
 		
 		this.setRotation(-(float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
 		this.setPosition(velocity, SPEED);
+		
+		if(health <= 0){
+			Game.getCurrentScene().remove(this);
+		}
+	}
+	
+	public void takeDamage(float amount){
+		health -= amount;
 	}
 	
 	public void setPosition(Vector2f direction, float distance){	

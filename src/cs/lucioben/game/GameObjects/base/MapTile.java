@@ -4,10 +4,12 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
 import cs.lucioben.game.base.GameObject;
+import cs.lucioben.game.base.GameObjectType;
 
 public class MapTile extends GameObject {
-	public MapTile(int width, int height, String texturePath) {
+	public MapTile(int width, int height, String texturePath, GameObjectType type) {
 		super(width, height, 0, new Vector2f(0, 0), texturePath);
+		this.setType(type);
 	}
 	
 	@Override

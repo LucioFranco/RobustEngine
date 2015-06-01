@@ -23,7 +23,7 @@ public class Player extends GameObject {
 	}
 
 	@Override
-	public void update() {		
+	public void update() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			setPosition(new Vector2f(0,-1), SPEED);
 		}
@@ -81,7 +81,7 @@ public class Player extends GameObject {
 	}
 
 	@Override
-	public void draw() {		
+	public void draw() {
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0,0); 
 		GL11.glVertex2f(-this.getWidth()/2, -this.getHeight()/2);

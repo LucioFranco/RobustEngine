@@ -14,8 +14,8 @@ public class StartScene extends Scene {
 	@Override
 	public void setup() {
 		this.setMapFileName("res/maps/StartScene.txt");
-		this.addMapTile("-", new MapTile(96, 96, "res/images/wall.png"));
-		this.addMapTile("`", new MapTile(96, 96, "res/images/floor.png"));
+		this.addMapTile("-", new MapTile(96, 96, "res/images/wall.png", GameObjectType.COLLISON));
+		this.addMapTile("`", new MapTile(96, 96, "res/images/floor.png", GameObjectType.NON_COLLISON));
 
 		Player player = new Player(64, 64, 0, new Vector2f(200, 100), "res/images/player.png");
 		player.setType(GameObjectType.PLAYER);

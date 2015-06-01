@@ -13,9 +13,6 @@ public class State implements Iterator {
 		this.sceneList = sceneList;
 		this.index = 0;
 		this.currentScene = sceneList[0];
-		for(Scene s : sceneList) {
-			s.setup();
-		}
 	}
 	
 	public Scene getCurrentScene() {
@@ -39,7 +36,9 @@ public class State implements Iterator {
 			index++;
 			this.currentScene = sceneList[index - 1];
 			System.out.println(sceneList[index - 1].getClass().getName());
-			return sceneList[index - 1];
+			this.currentScene.setup();
+			this.currentScene.loadAssets();
+			return this.currentScene;
 		}
 	}
 	@Override

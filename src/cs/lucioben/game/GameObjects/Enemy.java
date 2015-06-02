@@ -23,7 +23,7 @@ public class Enemy extends GameObject{
 	}
 	
 	@Override
-	public void update() {				
+	public void update() {
 		float tx = player.getPosition().x - this.getPosition().x;
 		float ty = player.getPosition().y - this.getPosition().y;
 		float dist = (float)Math.sqrt(tx * tx + ty * ty);

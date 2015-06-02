@@ -11,7 +11,7 @@ import cs.lucioben.game.GameObjects.base.MapTile;
 
 public abstract class Scene {
 	private ArrayList<GameObject> SceneObjects;
-	private HashMap<String, MapTile> MapKeywords;
+	private HashMap<String, GameObject> MapKeywords;
 	private String MapFile;
 	public Scene() {
 		 this(null);
@@ -20,7 +20,7 @@ public abstract class Scene {
 	public Scene(String MapFile) {
 		this.MapFile = MapFile;
 		this.SceneObjects = new ArrayList<GameObject>();
-		this.MapKeywords = new HashMap<String, MapTile>();
+		this.MapKeywords = new HashMap<String, GameObject>();
 	}
 	
 	public abstract void setup();
@@ -40,7 +40,7 @@ public abstract class Scene {
 		SceneObjects = newList;
 	}
 	
-	public void addMapTile(String key, MapTile obj) {
+	public void addMapTile(String key, GameObject obj) {
 		this.MapKeywords.put(key, obj);
 	}
 	
@@ -86,7 +86,7 @@ public abstract class Scene {
 					char[] v = line.toCharArray();
 					
 					for(int i = 0; i < v.length; i++){
-						MapTile tile = this.MapKeywords.get("" + v[i]);
+						GameObject tile = this.MapKeywords.get("" + v[i]);
 						if(tile != null) {
 							tile.setPosition(new Vector2f(tile.getWidth() * i, tile.getHeight() * lineCount));
 							this.SceneObjects.add(0, tile.clone());	

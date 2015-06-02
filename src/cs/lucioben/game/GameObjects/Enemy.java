@@ -18,7 +18,6 @@ public class Enemy extends GameObject{
 	private long shootDelay = 1000;
 	private long lastTime = System.currentTimeMillis();
 	private MapTile bg;
-	private boolean isDead;
 	
 	public Enemy(Vector2f startingPosition, Player player, MapTile bg){
 		super(WIDTH, HEIGHT, 0, startingPosition);
@@ -26,26 +25,28 @@ public class Enemy extends GameObject{
 		this.setType(GameObjectType.ENEMY);
 		this.player = player;
 		this.bg = bg;
-		this.isDead = false;
+		this.setBoundingBoxWidth(64);
+		this.setBoundingBoxWidth(64);
 	}
 	
 	@Override
 	public void update() {
-		float tx = player.getPosition().x - this.getPosition().x;
-		float ty = player.getPosition().y - this.getPosition().y;
-		float dist = (float)Math.sqrt(tx * tx + ty * ty);
-		velocity.x = (tx/dist) * SPEED;
-		velocity.y = (ty/dist) * SPEED;
-		
-		this.setRotation((float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
-		
 		if(health <= 0){
-			this.isDead = true;
+			this.setTexture("res/images/turretDead.png");
 		}
+		else{
+			float tx = player.getPosition().x - this.getPosition().x;
+			float ty = player.getPosition().y - this.getPosition().y;
+			float dist = (float)Math.sqrt(tx * tx + ty * ty);
+			velocity.x = (tx/dist) * SPEED;
+			velocity.y = (ty/dist) * SPEED;
+			
+			this.setRotation((float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
 		
-		if(System.currentTimeMillis() - lastTime > shootDelay){
-			shoot();
-			lastTime = System.currentTimeMillis();
+			if(System.currentTimeMillis() - lastTime > shootDelay){
+				shoot();
+				lastTime = System.currentTimeMillis();
+			}
 		}
 	}
 	
@@ -77,22 +78,21 @@ public class Enemy extends GameObject{
 		GL11.glVertex2f(this.getWidth()/2, -this.getHeight()/2);
 		GL11.glEnd();
 		
-		if(!this.isDead) {
-			GL11.glRotatef(this.getRotation(), 0, 0, 1);
-			this.getTexture().bind();
-			GL11.glBegin(GL11.GL_QUADS);
-			GL11.glTexCoord2f(0,0); 
-			GL11.glVertex2f(-this.getWidth()/2, -this.getHeight()/2);
-			
-			GL11.glTexCoord2f(0,1); 
-			GL11.glVertex2f(-this.getWidth()/2, this.getHeight()/2);
+		
+		GL11.glRotatef(this.getRotation(), 0, 0, 1);
+		this.getTexture().bind();
+		GL11.glBegin(GL11.GL_QUADS);
+		GL11.glTexCoord2f(0,0); 
+		GL11.glVertex2f(-this.getWidth()/2, -this.getHeight()/2);
+		
+		GL11.glTexCoord2f(0,1); 
+		GL11.glVertex2f(-this.getWidth()/2, this.getHeight()/2);
 
-			GL11.glTexCoord2f(1,1); 
-			GL11.glVertex2f(this.getWidth()/2, this.getHeight()/2);
-			
-			GL11.glTexCoord2f(1,0); 
-			GL11.glVertex2f(this.getWidth()/2, -this.getHeight()/2);
-			GL11.glEnd();
-		}
+		GL11.glTexCoord2f(1,1); 
+		GL11.glVertex2f(this.getWidth()/2, this.getHeight()/2);
+		
+		GL11.glTexCoord2f(1,0); 
+		GL11.glVertex2f(this.getWidth()/2, -this.getHeight()/2);
+		GL11.glEnd();
 	}
 }

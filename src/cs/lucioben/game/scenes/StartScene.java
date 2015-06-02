@@ -5,7 +5,6 @@ import org.lwjgl.util.vector.Vector2f;
 import cs.lucioben.game.GameObjects.Enemy;
 import cs.lucioben.game.GameObjects.Player;
 import cs.lucioben.game.GameObjects.base.MapTile;
-import cs.lucioben.game.GameObjects.base.MutliLayerObject;
 import cs.lucioben.game.GameObjects.base.TextObject;
 import cs.lucioben.game.base.GameObjectType;
 import cs.lucioben.game.base.Scene;
@@ -22,7 +21,7 @@ public class StartScene extends Scene {
 		this.addMapTile("`", floor);
 		this.addMapTile("F", end);
 
-		Player player = new Player(96, 96, 64, 64, 0, new Vector2f(200, 100), "res/images/player.png");
+		Player player = new Player(96, 96, 0, new Vector2f(200, 100), "res/images/player.png");
 		player.setType(GameObjectType.PLAYER);
 		this.add(player);
 		

@@ -16,10 +16,16 @@ public class Player extends GameObject {
 	
 	public Player(int i, int j, float rotation, Vector2f position) {
 		super(i, j, rotation, position);
+		
+		this.setBoundingBoxWidth(64);
+		this.setBoundingBoxHeight(64);
 	}
 	
-	public Player(int i, int j, int bbw, int bbh, float rotation, Vector2f position, String texture) {
-		super(i, j, bbw, bbh, rotation, position, texture);
+	public Player(int i, int j, float rotation, Vector2f position, String path) {
+		super(i, j, rotation, position, path);
+		
+		this.setBoundingBoxWidth(64);
+		this.setBoundingBoxHeight(64);
 	}
 
 	@Override
@@ -59,7 +65,7 @@ public class Player extends GameObject {
 			
 			boolean collision = false;
 			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
-				if(GameObj.getType().equals(GameObjectType.COLLISON) || GameObj.getType().equals(GameObjectType.END)){
+				if(GameObj.getType().equals(GameObjectType.COLLISON) || GameObj.getType().equals(GameObjectType.END) || GameObj.getType().equals(GameObjectType.ENEMY)){
 					if( futurePosition.x - this.getBoundingBoxWidth()/2 < GameObj.getPosition().x + GameObj.getBoundingBoxWidth()/2 &&
 						futurePosition.x + this.getBoundingBoxWidth()/2 > GameObj.getPosition().x - GameObj.getBoundingBoxWidth()/2 &&
 						futurePosition.y - this.getBoundingBoxHeight()/2 < GameObj.getPosition().y + GameObj.getBoundingBoxHeight()/2 &&

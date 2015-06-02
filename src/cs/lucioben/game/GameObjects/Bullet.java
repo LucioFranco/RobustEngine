@@ -57,10 +57,10 @@ public class Bullet extends GameObject{
 			boolean collision = false;
 			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
 				if(GameObj.getType().equals(GameObjectType.COLLISON) || GameObj.getType().equals(GameObjectType.ENEMY)){
-					if( futurePosition.x - this.getWidth()/2 < GameObj.getPosition().x + GameObj.getWidth()/2 &&
-						futurePosition.x + this.getWidth()/2 > GameObj.getPosition().x - GameObj.getWidth()/2 &&
-						futurePosition.y - this.getHeight()/2 < GameObj.getPosition().y + GameObj.getHeight()/2 &&
-						futurePosition.y + this.getHeight()/2 > GameObj.getPosition().y - GameObj.getHeight()/2){
+					if( futurePosition.x - this.getBoundingBoxWidth()/2 < GameObj.getPosition().x + GameObj.getBoundingBoxWidth()/2 &&
+						futurePosition.x + this.getBoundingBoxWidth()/2 > GameObj.getPosition().x - GameObj.getBoundingBoxWidth()/2 &&
+						futurePosition.y - this.getBoundingBoxHeight()/2 < GameObj.getPosition().y + GameObj.getBoundingBoxHeight()/2 &&
+						futurePosition.y + this.getBoundingBoxHeight()/2 > GameObj.getPosition().y - GameObj.getBoundingBoxHeight()/2){
 												
 						if(GameObj.getType().equals(GameObjectType.ENEMY) && !this.getEnemyBullet()){
 							collision = true;
@@ -88,6 +88,7 @@ public class Bullet extends GameObject{
 	
 	@Override
 	public void draw() {
+		GL11.glRotatef(this.getRotation(), 0, 0, 1);
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0,0); 
 		GL11.glVertex2f(-this.getWidth()/2, -this.getHeight()/2);

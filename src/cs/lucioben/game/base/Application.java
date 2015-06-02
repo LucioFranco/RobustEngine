@@ -4,6 +4,7 @@ import org.lwjgl.opengl.DisplayMode;
 
 import cs.lucioben.game.scenes.SecondScene;
 import cs.lucioben.game.scenes.StartScene;
+import cs.lucioben.game.scenes.ThirdScene;
 import cs.lucioben.game.scenes.TitleScene;
 import cs.lucioben.game.scenes.WinScene;
 
@@ -13,6 +14,7 @@ public class Application {
 					new TitleScene(),
 					new StartScene(),
 					new SecondScene(),
+					new ThirdScene(),
 					new WinScene()
 				};
 		Game game = Game.getContext();

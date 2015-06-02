@@ -2,6 +2,8 @@ package cs.lucioben.game.GameObjects;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
+
+import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
 
@@ -9,8 +11,10 @@ public class Health extends GameObject {
 	private int value = 100;
 	private float maxValue, scale; 
 	private Player player;
+	private static int width = 100;
+	private static int height = 10;
 	
-	public Health(int width, int height, Vector2f pos, String path, Player player) {
+	public Health(Vector2f pos, String path, Player player) {
 		super(width, height, 0, pos, path);
 		super.setType(GameObjectType.TEXT);
 		this.player = player; 
@@ -23,6 +27,7 @@ public class Health extends GameObject {
 		value = player.getHealth();
 		
 		this.setWidth((int)scale * value);
+		this.setPosition(new Vector2f(Game.getScreenWidth()/2, Game.getScreenHeight()/2 - player.getHeight()/2));
 				
 		return;
 	}

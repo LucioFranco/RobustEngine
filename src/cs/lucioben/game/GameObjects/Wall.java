@@ -38,7 +38,7 @@ public class Wall extends GameObject {
 		GL11.glTexCoord2f(1,1); 
 		GL11.glVertex2f(this.getWidth()/2, this.getHeight()/2);
 		
-		GL11.glTexCoord2f(1,0); 
+		GL11.glTexCoord2f(1,0);
 		GL11.glVertex2f(this.getWidth()/2, -this.getHeight()/2);
 		GL11.glEnd();
 	}

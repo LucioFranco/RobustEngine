@@ -8,8 +8,8 @@ import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
 
 public class Enemy extends GameObject{
-	private static final int WIDTH = 64;
-	private static final int HEIGHT = 64;
+	private static final int WIDTH = 96;
+	private static final int HEIGHT = 96;
 	private final float SPEED = 2; 
 	private float health = 100;
 	private Vector2f velocity = new Vector2f(0,0);

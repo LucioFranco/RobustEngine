@@ -32,7 +32,7 @@ public class StartScene extends Scene {
 		TextObject text = new TextObject("Level 1", new Vector2f(10, 10));
 		this.add(text);
 		
-		Health health = new Health(Game.getScreenWidth(), 50, new Vector2f(0, Game.getScreenHeight() + player.getHeight()),"res/images/health.png", player);
+		Health health = new Health(Game.getScreenWidth(), 50, new Vector2f(0, Game.getScreenHeight() - 25),"res/images/health.png", player);
 		this.add(health);
 	}
 }

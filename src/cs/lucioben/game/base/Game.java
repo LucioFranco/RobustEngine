@@ -9,8 +9,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 public class Game {
 
-	private static int screenWidth = 900;
-	private static int screenHeight = 600;
+	private static DisplayMode displayMode = new DisplayMode(900, 600);
 	private static String title = "openGl Game";
 	private static Game context;
 	private static FPSCounter fpsCounter = FPSCounter.getInstance();
@@ -20,11 +19,13 @@ public class Game {
 
 	public State state;
 
-	private Game(int width, int height) {
+	private Game() {
 		cameraOffset = new Vector2f(Game.getScreenWidth()/2, Game.getScreenHeight()/2);
 
 		try{
-			Display.setDisplayMode(new DisplayMode(width, height));
+			Display.setDisplayMode(displayMode);
+			// Uncomment below to set resizable
+			// Display.setResizable(true);
 			Display.setTitle(title);
 			Display.create();
 			Display.setVSyncEnabled(true);
@@ -33,6 +34,10 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Starts the game and the game loop.
+	 * @param pass an array of Scene's
+	 */
 	public void start(Scene[] sceneList) {
 		try {
 			this.state = new State(sceneList);
@@ -84,7 +89,6 @@ public class Game {
 
 				switch(GameObj.getType()){
 					case PLAYER:
-						
 						//Set the cameraOffset to the characters position.
 						cameraOffset = new Vector2f(GameObj.getPosition().x - screenOffset.x, GameObj.getPosition().y - screenOffset.y);
 
@@ -127,25 +131,40 @@ public class Game {
 		}
 	}
 
+	/**
+	 * @return the current scene
+	 */
 	public static Scene getCurrentScene(){
 		return Game.getContext().state.getCurrentScene();
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static Game getContext() {
 		if(Game.context == null){
-			Game.context = new Game(Game.getScreenWidth(), Game.getScreenHeight());
+			Game.context = new Game();
 			return Game.context;
 		}
 		else{
 			return Game.context;
 		}
 	}
+	
+	public static void setDisplayMode(DisplayMode dspMode) {
+		displayMode = dspMode;
+	}
+	
+	public static DisplayMode getDisplayMode() {
+		return displayMode;
+	}
 
 	public static int getScreenWidth() {
-		return screenWidth;
+		return displayMode.getWidth();
 	}
 
 	public static int getScreenHeight() {
-		return screenHeight;
+		return displayMode.getHeight();
 	}
 }

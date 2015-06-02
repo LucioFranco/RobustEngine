@@ -75,6 +75,7 @@ public class State implements Iterator {
 	}
 	
 	private void loadScene(Scene scene) {
+		scene.clean();
 		scene.setup();
 		scene.loadAssets();
 	}

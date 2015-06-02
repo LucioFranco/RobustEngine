@@ -61,6 +61,11 @@ public abstract class Scene {
 		return SceneObjects;
 	}
 	
+	public void clean() {
+		this.SceneObjects = new ArrayList<GameObject>();
+		this.MapKeywords = new HashMap<String, GameObject>();
+	}
+	
 	public String toString() {
 		String temp = this.getClass().getName() + "\n";
 		for(GameObject obj : this.SceneObjects) {

@@ -9,10 +9,12 @@ public class State implements Iterator {
 	private Scene[] sceneList;
 	private int index;
 	private Scene currentScene;
+	private boolean tempScene;
 	public State(Scene[] sceneList) {
 		this.sceneList = sceneList;
 		this.index = -1;
 		this.currentScene = sceneList[0];
+		this.tempScene = false;
 	}
 	
 	public Scene getCurrentScene() {
@@ -20,11 +22,13 @@ public class State implements Iterator {
 	}
 	
 	public void transitionTo(Scene scene) {
+		this.tempScene = true;
 		this.currentScene = scene;
 		this.loadScene(this.currentScene);
 	}
 	
 	public void transitionTo(int i) {
+		this.tempScene = false;
 		this.currentScene = this.sceneList[i];
 		this.loadScene(this.currentScene);
 	}
@@ -34,7 +38,9 @@ public class State implements Iterator {
 	}
 	
 	public Scene back() {
-		index--;
+		if(!tempScene) {
+			index--;
+		}
 		this.currentScene = this.sceneList[index];
 		this.loadScene(this.currentScene);
 		return this.currentScene;
@@ -54,6 +60,7 @@ public class State implements Iterator {
 			Display.destroy();
 			return null;
 		}else {
+			this.tempScene = false;
 			index++;
 			this.currentScene = sceneList[index];
 			System.out.println(sceneList[index].getClass().getName());

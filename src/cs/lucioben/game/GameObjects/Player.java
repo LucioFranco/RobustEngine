@@ -4,14 +4,13 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
-import org.newdawn.slick.opengl.Texture;
 
 import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
 import cs.lucioben.game.scenes.GameOverScene;
 
-public class Player extends GameObject {
+public class Player extends GameObject implements Healthable {
 	private float SPEED = 10;
 	private boolean isColliding = false;
 	private boolean mouseClicked = false;

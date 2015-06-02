@@ -10,30 +10,31 @@ import cs.lucioben.game.base.GameObjectType;
 public class Health extends GameObject {
 	private int value = 100;
 	private float maxValue, scale; 
-	private Player player;
+	private Healthable obj;
 	private static int width = 100;
 	private static int height = 10;
 	
-	public Health(Vector2f pos, String path, Player player) {
-		super(width, height, 0, pos, path);
+	public Health(String path, Healthable obj) {
+		super(width, height, 0, new Vector2f(0, 0), path);
 		super.setType(GameObjectType.TEXT);
-		this.player = player; 
-		this.maxValue = player.getHealth();
+		this.obj = obj; 
+		this.maxValue = obj.getHealth();
 		scale = (this.getWidth() / maxValue);
 	}
 
 	@Override
 	public void update() {
-		value = player.getHealth();
+		value = obj.getHealth();
 		
 		this.setWidth((int)scale * value);
-		this.setPosition(new Vector2f(Game.getScreenWidth()/2, Game.getScreenHeight()/2 - player.getHeight()/2));
+		this.setPosition(new Vector2f(Game.getScreenWidth()/2, Game.getScreenHeight()/2 - ((GameObject)obj).getHeight() / 2));
 				
 		return;
 	}
 
 	@Override
-	public void draw() {	
+	public void draw() {
+		this.getTexture().bind();
 	    GL11.glRotatef(this.getRotation(), 0, 0, 1);
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0,0); 

@@ -7,7 +7,6 @@ import cs.lucioben.game.GameObjects.Health;
 import cs.lucioben.game.GameObjects.Player;
 import cs.lucioben.game.GameObjects.base.MapTile;
 import cs.lucioben.game.GameObjects.base.TextObject;
-import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObjectType;
 import cs.lucioben.game.base.Scene;
 
@@ -32,7 +31,7 @@ public class ThirdScene extends Scene {
 		TextObject text = new TextObject("Level 3", new Vector2f(10, 10));
 		this.add(text);
 		
-		Health health = new Health(new Vector2f(0, Game.getScreenHeight() - 25),"res/images/health.png", player);
+		Health health = new Health("res/images/health.png", player);
 		this.add(health);
 	}
 }

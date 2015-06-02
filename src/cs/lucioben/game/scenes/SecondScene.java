@@ -35,7 +35,7 @@ public class SecondScene extends Scene {
 		TextObject text = new TextObject("Level 2", new Vector2f(10, 10));
 		this.add(text);
 		
-		Health health = new Health(new Vector2f(0, Game.getScreenHeight() - 25),"res/images/health.png", player);
+		Health health = new Health("res/images/health.png", player);
 		this.add(health);
 	}
 }

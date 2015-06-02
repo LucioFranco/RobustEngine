@@ -9,8 +9,8 @@ import cs.lucioben.game.base.Scene;
 public class TitleScene extends Scene {
 	@Override
 	public void setup() {
-		this.add(new TextObject("KILL the GAME", new Vector2f(Game.getScreenWidth() / 2, Game.getScreenHeight() / 2)));
-		//this.add(new TextObject("Press Space to Continue", new Vector2f(Game.getScreenWidth() / 2 - 185, Game.getScreenHeight() / 2 + 50), Color.white, 26f));
+		this.add(new TextObject("KILL the GAME", new Vector2f(Game.getScreenWidth() / 2 - 165, Game.getScreenHeight() / 2), Color.white, 46f));
+		this.add(new TextObject("Press Space to Continue", new Vector2f(Game.getScreenWidth() / 2 - 170, Game.getScreenHeight() / 2 + 50), Color.white, 26f));
 		this.add(new SceneChanger());
 	}
 }

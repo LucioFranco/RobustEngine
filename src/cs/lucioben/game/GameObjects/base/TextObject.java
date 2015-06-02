@@ -10,6 +10,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
 
+import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
 
@@ -54,8 +55,8 @@ public class TextObject extends GameObject {
 	public void draw() {	
 		GL11.glEnable(GL11.GL_BLEND);
 	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		
-		this.font.drawString(this.getPosition().x, this.getPosition().y, this.str, this.color);
+	    
+		this.font.drawString(0, 0, this.str, this.color);
 		
 		GL11.glDisable(GL11.GL_BLEND);
 	}

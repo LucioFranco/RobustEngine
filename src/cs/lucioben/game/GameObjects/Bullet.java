@@ -9,18 +9,19 @@ import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
 
 public class Bullet extends GameObject{
-	private final float SPEED = 75f; 
+	private final float SPEED = 50f; 
 	private static final int WIDTH = 4;
 	private static final int HEIGHT = 10;
 	private Vector2f velocity;
 	private boolean alive = true; 
+	private boolean enemyBullet = false; 
 	private float damage;
 	
 	public Bullet(Vector2f startingPosition, float rotation, float damage){
 		super(WIDTH, HEIGHT, 0, startingPosition);
 
 		this.setTexture("res/images/bullet.png");
-		this.setRotation(90 + -(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)));
+		this.setRotation(90 + rotation);
 		this.setType(GameObjectType.TEMP_OBJECT);
 		velocity = new Vector2f((float)Math.cos(Math.toRadians(rotation)), (float)Math.sin(Math.toRadians(rotation))); 
 		this.damage = damage; 
@@ -33,6 +34,14 @@ public class Bullet extends GameObject{
 		if(!alive){
 			Game.getCurrentScene().remove(this);
 		}
+	}
+	
+	public void setEnemyBullet(boolean t){
+		enemyBullet = t;
+	}
+	
+	public boolean getEnemyBullet(){
+		return enemyBullet; 
 	}
 	
 	public float getDamage(){
@@ -54,12 +63,15 @@ public class Bullet extends GameObject{
 						futurePosition.x + this.getWidth()/2 > GameObj.getPosition().x - GameObj.getWidth()/2 &&
 						futurePosition.y - this.getHeight()/2 < GameObj.getPosition().y + GameObj.getHeight()/2 &&
 						futurePosition.y + this.getHeight()/2 > GameObj.getPosition().y - GameObj.getHeight()/2){
-						
-						collision = true;
-						
-						if(GameObj.getType().equals(GameObjectType.ENEMY)){
+												
+						if(GameObj.getType().equals(GameObjectType.ENEMY) && !this.getEnemyBullet()){
+							collision = true;
+
 							Enemy e = (Enemy)GameObj;
 							e.takeDamage(this.getDamage());
+						}
+						if(GameObj.getType().equals(GameObjectType.COLLISON)){
+							collision = true; 
 						}
 					}
 				}

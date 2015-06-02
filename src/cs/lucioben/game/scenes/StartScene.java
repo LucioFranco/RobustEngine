@@ -21,7 +21,7 @@ public class StartScene extends Scene {
 		this.addMapTile("`", floor);
 		this.addMapTile("F", end);
 
-		Player player = new Player(96, 96, 64, 64, 0, new Vector2f(200, 100), "res/images/player.png");
+		Player player = new Player(96, 96, 0, new Vector2f(200, 100), "res/images/player.png");
 		player.setType(GameObjectType.PLAYER);
 		this.add(player);
 		

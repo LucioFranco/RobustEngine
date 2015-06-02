@@ -68,6 +68,7 @@ public class Game {
 		setScreenOffset();
 
 		while(!Display.isCloseRequested()) {
+			System.out.println(this.state.getIndex());
 			fpsCounter.updateFPS();
 
 			GameObjectList = state.getCurrentScene().getSceneObjects();

@@ -16,6 +16,7 @@ public abstract class GameObject implements Cloneable {
 	private Texture texture;
 	private float rotation;
 	private GameObjectType type = GameObjectType.NO_TYPE;
+	private String texturePath;
 	private final static String DEFAULT_PATH = "res/images/defaultTexture.png";
 	
 	public GameObject() {
@@ -41,10 +42,11 @@ public abstract class GameObject implements Cloneable {
 		this.boundingBoxHeight = boundingBoxHeight;
 		this.position = position;
 		this.rotation = rotation;
-		this.texture = loadTexture(texturePath);
+		this.texturePath = texturePath;
+		this.texture = GameObject.loadTexture(texturePath);
 	}
 	
-	private Texture loadTexture(String path){
+	public static Texture loadTexture(String path){
 		try {
 			return TextureLoader.getTexture("PNG", new FileInputStream(new File(path)));
 		}
@@ -54,6 +56,22 @@ public abstract class GameObject implements Cloneable {
 		}
 		
 		return null;
+	}
+	
+	public static Texture loadTexture(GameObject obj){
+		try {
+			return TextureLoader.getTexture("PNG", new FileInputStream(new File(obj.getTexturePath())));
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			System.exit(0);
+		}
+		
+		return null;
+	}
+	
+	public String getTexturePath() {
+		return this.texturePath;
 	}
 	
 	public Vector2f getPosition() {

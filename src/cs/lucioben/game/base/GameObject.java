@@ -44,7 +44,7 @@ public abstract class GameObject implements Cloneable {
 		this.texture = loadTexture(texturePath);
 	}
 	
-	private Texture loadTexture(String path){
+	public static Texture loadTexture(String path){
 		try {
 			return TextureLoader.getTexture("PNG", new FileInputStream(new File(path)));
 		}

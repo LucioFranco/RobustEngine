@@ -23,7 +23,7 @@ public class StartScene extends Scene {
 		player.setType(GameObjectType.PLAYER);
 		this.add(player);
 		
-		this.addMapTile("E", new MutliLayerObject(96, 96, new Enemy(new Vector2f(0, 0), player), floor));
+		this.addMapTile("E", new Enemy(new Vector2f(0, 0), player, floor));
 
 		TextObject text = new TextObject("Level 1", new Vector2f(10, 10));
 		this.add(text);

@@ -109,8 +109,6 @@ public class Game {
 						break;
 				}
 
-				GL11.glRotatef(GameObj.getRotation(), 0, 0, 1);
-
 				GameObj.getTexture().bind();
 				GameObj.draw();
 

@@ -3,6 +3,7 @@ package cs.lucioben.game.GameObjects;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 
+import cs.lucioben.game.GameObjects.base.MapTile;
 import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
@@ -16,12 +17,16 @@ public class Enemy extends GameObject{
 	private Player player; 
 	private long shootDelay = 1000;
 	private long lastTime = System.currentTimeMillis();
+	private MapTile bg;
+	private boolean isDead;
 	
-	public Enemy(Vector2f startingPosition, Player player){
+	public Enemy(Vector2f startingPosition, Player player, MapTile bg){
 		super(WIDTH, HEIGHT, 0, startingPosition);
 		this.setTexture("res/images/turret.png");
 		this.setType(GameObjectType.ENEMY);
 		this.player = player;
+		this.bg = bg;
+		this.isDead = false;
 	}
 	
 	@Override
@@ -35,7 +40,7 @@ public class Enemy extends GameObject{
 		this.setRotation((float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
 		
 		if(health <= 0){
-			Game.getCurrentScene().remove(this);
+			this.isDead = true;
 		}
 		
 		if(System.currentTimeMillis() - lastTime > shootDelay){
@@ -56,6 +61,8 @@ public class Enemy extends GameObject{
 	
 	@Override
 	public void draw() {
+		bg.getTexture().bind();
+		GL11.glRotatef(bg.getRotation(), 0, 0, 1);
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0,0); 
 		GL11.glVertex2f(-this.getWidth()/2, -this.getHeight()/2);
@@ -69,5 +76,23 @@ public class Enemy extends GameObject{
 		GL11.glTexCoord2f(1,0); 
 		GL11.glVertex2f(this.getWidth()/2, -this.getHeight()/2);
 		GL11.glEnd();
+		
+		if(!this.isDead) {
+			GL11.glRotatef(this.getRotation(), 0, 0, 1);
+			this.getTexture().bind();
+			GL11.glBegin(GL11.GL_QUADS);
+			GL11.glTexCoord2f(0,0); 
+			GL11.glVertex2f(-this.getWidth()/2, -this.getHeight()/2);
+			
+			GL11.glTexCoord2f(0,1); 
+			GL11.glVertex2f(-this.getWidth()/2, this.getHeight()/2);
+
+			GL11.glTexCoord2f(1,1); 
+			GL11.glVertex2f(this.getWidth()/2, this.getHeight()/2);
+			
+			GL11.glTexCoord2f(1,0); 
+			GL11.glVertex2f(this.getWidth()/2, -this.getHeight()/2);
+			GL11.glEnd();
+		}
 	}
 }

@@ -82,6 +82,7 @@ public class Player extends GameObject {
 
 	@Override
 	public void draw() {
+		GL11.glRotatef(this.getRotation(), 0, 0, 1);
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0,0); 
 		GL11.glVertex2f(-this.getWidth()/2, -this.getHeight()/2);

@@ -100,6 +100,9 @@ public class Game {
 						GL11.glTranslatef(GameObj.getScreenPosition(cameraOffset).x, GameObj.getScreenPosition(cameraOffset).y, 0);
 						break;
 					case TEXT:
+						GL11.glTranslatef(GameObj.getPosition().x, GameObj.getPosition().y, 0);
+						
+						System.out.println(GameObj.getPosition());
 						break;
 					case NON_COLLISON:
 						GL11.glTranslatef(GameObj.getScreenPosition(cameraOffset).x, GameObj.getScreenPosition(cameraOffset).y, 0);

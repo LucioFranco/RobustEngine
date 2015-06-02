@@ -23,9 +23,7 @@ public class Health extends GameObject {
 		value = player.getHealth();
 		
 		this.setWidth((int)scale * value);
-		
-		System.out.println(player.getHealth());
-		
+				
 		return;
 	}
 

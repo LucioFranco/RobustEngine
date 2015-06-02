@@ -4,7 +4,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
 
-import cs.lucioben.game.GameObjects.SceneChanger;
 import cs.lucioben.game.GameObjects.base.EmptyObject;
 import cs.lucioben.game.GameObjects.base.TextObject;
 import cs.lucioben.game.base.Game;

@@ -5,7 +5,6 @@ import org.lwjgl.util.vector.Vector2f;
 import cs.lucioben.game.GameObjects.Enemy;
 import cs.lucioben.game.GameObjects.Player;
 import cs.lucioben.game.GameObjects.base.MapTile;
-import cs.lucioben.game.GameObjects.base.MutliLayerObject;
 import cs.lucioben.game.GameObjects.base.TextObject;
 import cs.lucioben.game.base.GameObjectType;
 import cs.lucioben.game.base.Scene;

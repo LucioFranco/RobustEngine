@@ -44,11 +44,11 @@ public class Enemy extends GameObject{
 			
 			if(dist < playerBuffer){
 				this.setRotation((float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
-			}
 			
-			if(System.currentTimeMillis() - lastTime > shootDelay){
-				shoot();
-				lastTime = System.currentTimeMillis();
+				if(System.currentTimeMillis() - lastTime > shootDelay){
+					shoot();
+					lastTime = System.currentTimeMillis();
+				}
 			}
 		}
 	}

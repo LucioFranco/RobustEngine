@@ -11,11 +11,32 @@ public class State implements Iterator {
 	private Scene currentScene;
 	public State(Scene[] sceneList) {
 		this.sceneList = sceneList;
-		this.index = 0;
+		this.index = -1;
 		this.currentScene = sceneList[0];
 	}
 	
 	public Scene getCurrentScene() {
+		return this.currentScene;
+	}
+	
+	public void transitionTo(Scene scene) {
+		this.currentScene = scene;
+		this.loadScene(this.currentScene);
+	}
+	
+	public void transitionTo(int i) {
+		this.currentScene = this.sceneList[i];
+		this.loadScene(this.currentScene);
+	}
+	
+	public int getIndex() {
+		return this.index;
+	}
+	
+	public Scene back() {
+		index--;
+		this.currentScene = this.sceneList[index];
+		this.loadScene(this.currentScene);
 		return this.currentScene;
 	}
 	
@@ -34,10 +55,9 @@ public class State implements Iterator {
 			return null;
 		}else {
 			index++;
-			this.currentScene = sceneList[index - 1];
-			System.out.println(sceneList[index - 1].getClass().getName());
-			this.currentScene.setup();
-			this.currentScene.loadAssets();
+			this.currentScene = sceneList[index];
+			System.out.println(sceneList[index].getClass().getName());
+			this.loadScene(this.currentScene);
 			return this.currentScene;
 		}
 	}
@@ -45,5 +65,10 @@ public class State implements Iterator {
 	public void remove() {
 		// TODO find better fix for this
 		System.err.println("State remove does nothing sorry :(");
+	}
+	
+	private void loadScene(Scene scene) {
+		scene.setup();
+		scene.loadAssets();
 	}
 }

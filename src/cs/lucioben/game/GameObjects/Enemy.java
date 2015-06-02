@@ -14,6 +14,8 @@ public class Enemy extends GameObject{
 	private float health = 100;
 	private Vector2f velocity = new Vector2f(0,0);
 	private Player player; 
+	private long shootDelay = 1000;
+	private long lastTime = System.currentTimeMillis();
 	
 	public Enemy(Vector2f startingPosition, Player player){
 		super(WIDTH, HEIGHT, 0, startingPosition);
@@ -35,10 +37,21 @@ public class Enemy extends GameObject{
 		if(health <= 0){
 			Game.getCurrentScene().remove(this);
 		}
+		
+		if(System.currentTimeMillis() - lastTime > shootDelay){
+			shoot();
+			lastTime = System.currentTimeMillis();
+		}
 	}
 	
 	public void takeDamage(float amount){
 		health -= amount;
+	}
+	
+	public void shoot(){
+		Bullet bullet = new Bullet(this.getPosition(), this.getRotation(), 50.0f);
+		bullet.setEnemyBullet(true);
+		Game.getCurrentScene().add(bullet);
 	}
 	
 	@Override

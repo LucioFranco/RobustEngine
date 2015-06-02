@@ -48,7 +48,7 @@ public class State implements Iterator {
 	
 	@Override
 	public boolean hasNext() {
-		if(this.sceneList == null || this.index == this.sceneList.length) {
+		if(this.sceneList == null || this.index == this.sceneList.length - 1) {
 			return false;
 		}else {
 			return true;

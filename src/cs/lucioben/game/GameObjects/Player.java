@@ -12,7 +12,7 @@ import cs.lucioben.game.base.GameObjectType;
 import cs.lucioben.game.scenes.GameOverScene;
 
 public class Player extends GameObject {
-	private final float SPEED = 10;
+	private float SPEED = 10;
 	private boolean isColliding = false;
 	private boolean mouseClicked = false;
 	private int health = 100;
@@ -33,8 +33,13 @@ public class Player extends GameObject {
 
 	@Override
 	public void update() {
+		this.SPEED = 10;
 		if(this.health <= 0)
 			Game.getContext().state.transitionTo(new GameOverScene());
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+			this.SPEED = 13;
+		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			setPosition(new Vector2f(0,-1), SPEED);

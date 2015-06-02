@@ -14,10 +14,13 @@ public class StartScene extends Scene {
 
 	@Override
 	public void setup() {
-		MapTile wall = new MapTile(96, 96, "res/images/wall.png", GameObjectType.COLLISON), floor =  new MapTile(96, 96, "res/images/floor.png", GameObjectType.NON_COLLISON);
+		MapTile wall = new MapTile(96, 96, "res/images/wall.png", GameObjectType.COLLISON), 
+				floor =  new MapTile(96, 96, "res/images/floor.png", GameObjectType.NON_COLLISON), 
+				end = new MapTile(96, 96, "res/images/end.png", GameObjectType.END);
 		this.setMapFileName("res/maps/StartScene.txt");
 		this.addMapTile("-", wall);
 		this.addMapTile("`", floor);
+		this.addMapTile("F", end);
 
 		Player player = new Player(96, 96, 64, 64, 0, new Vector2f(200, 100), "res/images/player.png");
 		player.setType(GameObjectType.PLAYER);

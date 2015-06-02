@@ -9,11 +9,13 @@ import org.newdawn.slick.opengl.Texture;
 import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
+import cs.lucioben.game.scenes.GameOverScene;
 
 public class Player extends GameObject {
 	private final float SPEED = 10;
 	private boolean isColliding = false;
 	private boolean mouseClicked = false;
+	private int health = 100;
 	
 	public Player(int i, int j, float rotation, Vector2f position) {
 		super(i, j, rotation, position);
@@ -31,6 +33,9 @@ public class Player extends GameObject {
 
 	@Override
 	public void update() {
+		if(this.health <= 0)
+			Game.getContext().state.transitionTo(new GameOverScene());
+		
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			setPosition(new Vector2f(0,-1), SPEED);
 		}
@@ -53,7 +58,11 @@ public class Player extends GameObject {
 	}
 	
 	public void shoot(){
-		Game.getCurrentScene().add(new Bullet(this.getPosition(), (-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI))), 50.0f));
+		Game.getCurrentScene().add(new Bullet(this.getPosition(), (-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)))));
+	}
+	
+	public void takeDamage(float amount){
+		health -= amount;
 	}
 		
 	public void setPosition(Vector2f direction, float distance){	
@@ -62,7 +71,7 @@ public class Player extends GameObject {
 		
 		while(distance > 0){
 			previousPosition = futurePosition;
-			futurePosition = new Vector2f(futurePosition.x + direction.x, futurePosition.y + direction.y);
+			futurePosition  = new Vector2f(futurePosition.x + direction.x, futurePosition.y + direction.y);
 			
 			boolean collision = false;
 			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
@@ -115,5 +124,9 @@ public class Player extends GameObject {
 	
 	public void setColliding(boolean t){
 		isColliding = t;
+	}
+	
+	public int getHealth(){
+		return health;
 	}
 }

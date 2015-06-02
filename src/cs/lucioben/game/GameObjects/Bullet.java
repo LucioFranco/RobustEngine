@@ -13,16 +13,15 @@ public class Bullet extends GameObject{
 	private Vector2f velocity;
 	private boolean alive = true; 
 	private boolean enemyBullet = false; 
-	private float damage;
+	private float damage = 10;
 	
-	public Bullet(Vector2f startingPosition, float rotation, float damage){
+	public Bullet(Vector2f startingPosition, float rotation){
 		super(WIDTH, HEIGHT, 0, startingPosition);
 
 		this.setTexture("res/images/bullet.png");
 		this.setRotation(90 + rotation);
 		this.setType(GameObjectType.TEMP_OBJECT);
 		velocity = new Vector2f((float)Math.cos(Math.toRadians(rotation)), (float)Math.sin(Math.toRadians(rotation))); 
-		this.damage = damage; 
 	}
 	
 	@Override
@@ -56,7 +55,9 @@ public class Bullet extends GameObject{
 			
 			boolean collision = false;
 			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
-				if(GameObj.getType().equals(GameObjectType.COLLISON) || GameObj.getType().equals(GameObjectType.ENEMY)){
+				if(GameObj.getType().equals(GameObjectType.COLLISON) || 
+						GameObj.getType().equals(GameObjectType.ENEMY) || 
+						GameObj.getType().equals(GameObjectType.PLAYER)){
 					if( futurePosition.x - this.getBoundingBoxWidth()/2 < GameObj.getPosition().x + GameObj.getBoundingBoxWidth()/2 &&
 						futurePosition.x + this.getBoundingBoxWidth()/2 > GameObj.getPosition().x - GameObj.getBoundingBoxWidth()/2 &&
 						futurePosition.y - this.getBoundingBoxHeight()/2 < GameObj.getPosition().y + GameObj.getBoundingBoxHeight()/2 &&
@@ -71,6 +72,12 @@ public class Bullet extends GameObject{
 						if(GameObj.getType().equals(GameObjectType.COLLISON)){
 							collision = true; 
 						}
+						if(GameObj.getType().equals(GameObjectType.PLAYER) && this.getEnemyBullet()){
+							collision = true;
+							
+							Player player = (Player)GameObj;
+							player.takeDamage(this.getDamage());
+						}
 					}
 				}
 			}
@@ -81,9 +88,8 @@ public class Bullet extends GameObject{
 			}
 			
 			distance--;
+			this.setPosition(previousPosition);
 		}
-		
-		this.setPosition(previousPosition);
 	}
 	
 	@Override

@@ -18,6 +18,7 @@ public class Enemy extends GameObject{
 	private long lastTime = System.currentTimeMillis();
 	private Vector2f velocity = new Vector2f(0,0);
 	private MapTile bg;
+	private float playerBuffer = 500;
 	
 	public Enemy(Vector2f startingPosition, Player player, MapTile bg){
 		super(WIDTH, HEIGHT, 0, startingPosition);
@@ -41,8 +42,10 @@ public class Enemy extends GameObject{
 			velocity.x = (tx/dist) * SPEED;
 			velocity.y = (ty/dist) * SPEED;
 			
-			this.setRotation((float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
-		
+			if(dist < playerBuffer){
+				this.setRotation((float)(Math.atan2(player.getPosition().y - this.getPosition().y, player.getPosition().x - this.getPosition().x) * (180/Math.PI)));
+			}
+			
 			if(System.currentTimeMillis() - lastTime > shootDelay){
 				shoot();
 				lastTime = System.currentTimeMillis();
@@ -55,7 +58,7 @@ public class Enemy extends GameObject{
 	}
 	
 	public void shoot(){
-		Bullet bullet = new Bullet(this.getPosition(), this.getRotation(), 50.0f);
+		Bullet bullet = new Bullet(this.getPosition(), this.getRotation());
 		bullet.setEnemyBullet(true);
 		Game.getCurrentScene().add(bullet);
 	}

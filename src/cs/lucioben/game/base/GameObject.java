@@ -22,6 +22,10 @@ public abstract class GameObject implements Cloneable {
 		this(0,0,0,0,0,new Vector2f(0,0), DEFAULT_PATH);
 	}
 	
+	public GameObject(int width, int height, Vector2f position) {
+		this(width, height, width, height, 0, position, DEFAULT_PATH);
+	}
+	
 	public GameObject(int width, int height, float rotation, Vector2f position) {
 		this(width, height, width, height, rotation, position, DEFAULT_PATH);
 	}
@@ -80,6 +84,9 @@ public abstract class GameObject implements Cloneable {
 	}
 	public int getWidth() {
 		return width;
+	}
+	public void setWidth(int width){
+		this.width = width;
 	}
 	public int getHeight() {
 		return height;

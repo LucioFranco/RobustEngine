@@ -13,10 +13,10 @@ public class Enemy extends GameObject{
 	private static final int HEIGHT = 96;
 	private final float SPEED = 2; 
 	private float health = 100;
-	private Vector2f velocity = new Vector2f(0,0);
 	private Player player; 
 	private long shootDelay = 1000;
 	private long lastTime = System.currentTimeMillis();
+	private Vector2f velocity = new Vector2f(0,0);
 	private MapTile bg;
 	
 	public Enemy(Vector2f startingPosition, Player player, MapTile bg){

@@ -18,8 +18,8 @@ public class Player extends GameObject {
 		super(i, j, rotation, position);
 	}
 	
-	public Player(int i, int j, float rotation, Vector2f position, String texture) {
-		super(i, j, rotation, position, texture);
+	public Player(int i, int j, int bbw, int bbh, float rotation, Vector2f position, String texture) {
+		super(i, j, bbw, bbh, rotation, position, texture);
 	}
 
 	@Override
@@ -60,10 +60,10 @@ public class Player extends GameObject {
 			boolean collision = false;
 			for(GameObject GameObj : Game.getCurrentScene().getSceneObjects()) {	
 				if(GameObj.getType().equals(GameObjectType.COLLISON)){
-					if( futurePosition.x - this.getWidth()/2 < GameObj.getPosition().x + GameObj.getWidth()/2 &&
-						futurePosition.x + this.getWidth()/2 > GameObj.getPosition().x - GameObj.getWidth()/2 &&
-						futurePosition.y - this.getHeight()/2 < GameObj.getPosition().y + GameObj.getHeight()/2 &&
-						futurePosition.y + this.getHeight()/2 > GameObj.getPosition().y - GameObj.getHeight()/2){
+					if( futurePosition.x - this.getBoundingBoxWidth()/2 < GameObj.getPosition().x + GameObj.getBoundingBoxWidth()/2 &&
+						futurePosition.x + this.getBoundingBoxWidth()/2 > GameObj.getPosition().x - GameObj.getBoundingBoxWidth()/2 &&
+						futurePosition.y - this.getBoundingBoxHeight()/2 < GameObj.getPosition().y + GameObj.getBoundingBoxHeight()/2 &&
+						futurePosition.y + this.getBoundingBoxHeight()/2 > GameObj.getPosition().y - GameObj.getBoundingBoxHeight()/2){
 						
 						collision = true;
 					}

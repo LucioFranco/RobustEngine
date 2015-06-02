@@ -82,6 +82,7 @@ public class Game {
 
 				//Set the color to white by default
 				GL11.glColor3f(255, 255, 255);
+				GL11.glShadeModel(GL11.GL_SMOOTH);
 				GL11.glLoadIdentity();
 				GL11.glPushMatrix();
 				GL11.glEnable(GL11.GL_BLEND);
@@ -139,7 +140,6 @@ public class Game {
 	}
 
 	/**
-	 * 
 	 * @return
 	 */
 	public static Game getContext() {

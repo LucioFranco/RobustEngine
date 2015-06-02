@@ -8,15 +8,16 @@ import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
 
 public class Enemy extends GameObject{
+	private static final int WIDTH = 64;
+	private static final int HEIGHT = 64;
 	private final float SPEED = 2; 
-	private static final int WIDTH = 96;
-	private static final int HEIGHT = 96;
 	private float health = 100;
 	private Vector2f velocity = new Vector2f(0,0);
 	private Player player; 
 	
 	public Enemy(Vector2f startingPosition, Player player){
 		super(WIDTH, HEIGHT, 0, startingPosition);
+		this.setTexture("res/images/turret.png");
 		this.setType(GameObjectType.ENEMY);
 		this.player = player;
 	}

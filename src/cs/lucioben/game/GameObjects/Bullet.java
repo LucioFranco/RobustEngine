@@ -19,7 +19,8 @@ public class Bullet extends GameObject{
 	public Bullet(Vector2f startingPosition, float rotation, float damage){
 		super(WIDTH, HEIGHT, 0, startingPosition);
 
-		this.setRotation(-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)));
+		this.setTexture("res/images/bullet.png");
+		this.setRotation(90 + -(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)));
 		this.setType(GameObjectType.TEMP_OBJECT);
 		velocity = new Vector2f((float)Math.cos(Math.toRadians(rotation)), (float)Math.sin(Math.toRadians(rotation))); 
 		this.damage = damage; 

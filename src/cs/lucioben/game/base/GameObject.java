@@ -10,6 +10,8 @@ import org.newdawn.slick.opengl.TextureLoader;
 public abstract class GameObject implements Cloneable {
 	private int width;
 	private int height;
+	private int boundingBoxWidth; 
+	private int boundingBoxHeight;
 	private Vector2f position;
 	private Texture texture;
 	private float rotation;
@@ -17,16 +19,26 @@ public abstract class GameObject implements Cloneable {
 	private final static String DEFAULT_PATH = "res/images/defaultTexture.png";
 	
 	public GameObject() {
-		this(0,0,0,new Vector2f(0,0), DEFAULT_PATH);
+		this(0,0,0,0,0,new Vector2f(0,0), DEFAULT_PATH);
 	}
 	
 	public GameObject(int width, int height, float rotation, Vector2f position) {
-		this(width, height, rotation, position, DEFAULT_PATH);
+		this(width, height, width, height, rotation, position, DEFAULT_PATH);
 	}
 	
-	public GameObject(int width, int height, float rotation, Vector2f position, String texturePath) {
+	public GameObject(int width, int height, float rotation, Vector2f position, String path) {
+		this(width, height, width, height, rotation, position, path);
+	}
+	
+	public GameObject(int width, int height, int boundingBoxWidth, int boundingBoxHeight, float rotation, Vector2f position) {
+		this(width, height, boundingBoxWidth, boundingBoxHeight, rotation, position, DEFAULT_PATH);
+	}
+	
+	public GameObject(int width, int height, int boundingBoxWidth, int boundingBoxHeight, float rotation, Vector2f position, String texturePath) {
 		this.width = width;
 		this.height = height;
+		this.boundingBoxWidth = boundingBoxWidth; 
+		this.boundingBoxHeight = boundingBoxHeight;
 		this.position = position;
 		this.rotation = rotation;
 		this.texture = loadTexture(texturePath);
@@ -72,14 +84,27 @@ public abstract class GameObject implements Cloneable {
 	public int getHeight() {
 		return height;
 	}
+	public void setTexture(String path){
+		texture = loadTexture(path);
+	}
 	public Texture getTexture(){
 		return texture; 
 	}
-	
+	public int getBoundingBoxWidth() {
+		return boundingBoxWidth;
+	}
+	public void setBoundingBoxWidth(int boundingBoxWidth) {
+		this.boundingBoxWidth = boundingBoxWidth;
+	}
+	public int getBoundingBoxHeight() {
+		return boundingBoxHeight;
+	}
+	public void setBoundingBoxHeight(int boundingBoxHeight) {
+		this.boundingBoxHeight = boundingBoxHeight;
+	}
 	public void setType(GameObjectType t){
 		type = t;
 	}
-	
 	public GameObjectType getType(){
 		return type;
 	}
@@ -101,15 +126,6 @@ public abstract class GameObject implements Cloneable {
 			return null;
 		}
 	}
-	
-	/*
-	 * Types:
-	 * 0 - Player
-	 * 1 - Wall - Collision
-	 * 2 - HUD/Text
-	 * 3 - Wall - No collision
-	 * 4 - Bullet
-	 */
 	
 	public abstract void update();
 	public abstract void draw();

@@ -18,7 +18,7 @@ public class SecondScene extends Scene {
 
 	@Override
 	public void setup() {
-		MapTile wall = new MapTile(96, 96, "res/images/wall.png", GameObjectType.COLLISON), 
+		MapTile wall = new MapTile(96, 96, "res/images/wall2.png", GameObjectType.COLLISON), 
 				floor =  new MapTile(96, 96, "res/images/floor.png", GameObjectType.NON_COLLISON), 
 				end = new MapTile(96, 96, "res/images/end.png", GameObjectType.END);
 		this.setMapFileName("res/maps/SecondScene.txt");

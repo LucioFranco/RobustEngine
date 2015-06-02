@@ -4,15 +4,13 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import org.lwjgl.util.vector.Vector2f;
-
-import cs.lucioben.game.GameObjects.base.MapTile;
 
 public abstract class Scene {
 	private ArrayList<GameObject> SceneObjects;
 	private HashMap<String, GameObject> MapKeywords;
 	private String MapFile;
+	
 	public Scene() {
 		 this(null);
 	}

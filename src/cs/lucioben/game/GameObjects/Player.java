@@ -1,7 +1,7 @@
 /** 
  * The player object
  * 
- * @author Benjamin Snoha
+ * @author Lucio Franco and Benjamin Snoha
  * @version 1.0 
  * @since June 2, 2015
  */

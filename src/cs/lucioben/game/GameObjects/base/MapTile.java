@@ -1,7 +1,7 @@
 /** 
  * A generic tile on the map
  * 
- * @author Lucio Franco
+ * @author Lucio Franco and Benjamin Snoha
  * @version 1.0 
  * @since June 2, 2015
  */

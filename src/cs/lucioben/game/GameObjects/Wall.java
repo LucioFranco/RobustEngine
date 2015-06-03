@@ -1,5 +1,5 @@
 /** 
- * The scene changer object
+ * The wall tile
  * 
  * @author Benjamin Snoha
  * @version 1.0 

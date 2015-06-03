@@ -1,5 +1,5 @@
 /** 
- * The scene changer object
+ * An object that changes the scene when the space bar is pressed
  * 
  * @author Lucio Franco
  * @version 1.0 

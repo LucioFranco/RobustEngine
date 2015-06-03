@@ -1,3 +1,11 @@
+/** 
+ * The scene changer object
+ * 
+ * @author Lucio Franco
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.GameObjects;
 
 import org.lwjgl.input.Keyboard;
@@ -6,9 +14,9 @@ import cs.lucioben.game.base.Game;
 
 public class SceneChanger extends EmptyObject {
 
-	public SceneChanger() {
-	}
-
+	/**
+	 * Updates the scene changer, changes scene when space bar is pressed. 
+	 */
 	@Override
 	public void update() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {

@@ -36,35 +36,61 @@ public abstract class GameObject implements Cloneable {
 	
 
 	/**
-	 * Another constructor 
+	 * A constructor for the game object
+	 * @param width the width of the object
+	 * @param height the height of the object
+	 * @param position the position of the object
 	 */
 	public GameObject(int width, int height, Vector2f position) {
 		this(width, height, width, height, 0, position, DEFAULT_PATH);
 	}
 	
 	/**
-	 * Another constructor 
+	 * A constructor for the game object
+	 * @param width the width of the object
+	 * @param height the height of the object
+	 * @param rotation the rotation of the object
+	 * @param position the position of the object
 	 */
 	public GameObject(int width, int height, float rotation, Vector2f position) {
 		this(width, height, width, height, rotation, position, DEFAULT_PATH);
 	}
 	
 	/**
-	 * Another constructor 
+	 * A constructor for the game object
+	 * @param width the width of the object
+	 * @param height the height of the object
+	 * @param rotation the rotation of the object
+	 * @param position the position of the object
+	 * @param path the path for the texture of the object
 	 */
 	public GameObject(int width, int height, float rotation, Vector2f position, String path) {
 		this(width, height, width, height, rotation, position, path);
 	}
 	
 	/**
-	 * Another constructor 
+	 * A constructor for the game object
+	 * @param width the width of the object
+	 * @param height the height of the object
+	 * @param boundingBoxWidth the width of the bounding box of the object
+	 * @param boundingBoxHeight the height of the bounding box of the object
+	 * @param rotation the rotation of the object
+	 * @param position the position of the object
 	 */
 	public GameObject(int width, int height, int boundingBoxWidth, int boundingBoxHeight, float rotation, Vector2f position) {
 		this(width, height, boundingBoxWidth, boundingBoxHeight, rotation, position, DEFAULT_PATH);
 	}
 	
+
 	/**
-	 * Another constructor, with everything. 
+	 * A constructor for the game object
+	 * @param width the width of the object
+	 * @param height the height of the object
+	 * @param boundingBoxWidth the width of the bounding box of the object
+	 * @param boundingBoxHeight the height of the bounding box of the object
+	 * @param rotation the rotation of the object
+	 * @param position the position of the object
+	 * @param texturePath the path for the texture of the object
 	 */
 	public GameObject(int width, int height, int boundingBoxWidth, int boundingBoxHeight, float rotation, Vector2f position, String texturePath) {
 		this.width = width;

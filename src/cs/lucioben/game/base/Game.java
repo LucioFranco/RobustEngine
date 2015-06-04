@@ -1,3 +1,11 @@
+/** 
+ * The primary application class. This starts the game.
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.base;
 
 import java.util.ArrayList;
@@ -139,7 +147,7 @@ public class Game {
 	}
 
 	/**
-	 * @return
+	 * @return the game context
 	 */
 	public static Game getContext() {
 		if(Game.context == null){
@@ -151,18 +159,34 @@ public class Game {
 		}
 	}
 	
+	
+	/**
+	 * The main class for the game. 
+	 * @param dspMode the DisplayMode
+	 */
 	public static void setDisplayMode(DisplayMode dspMode) {
 		displayMode = dspMode;
 	}
 	
+	
+	/**
+	 * @return the DisplayMode
+	 */
 	public static DisplayMode getDisplayMode() {
 		return displayMode;
 	}
 
+	
+	/**
+	 * @return the screen width
+	 */
 	public static int getScreenWidth() {
 		return displayMode.getWidth();
 	}
 
+	/**
+	 * @return the screen height
+	 */
 	public static int getScreenHeight() {
 		return displayMode.getHeight();
 	}

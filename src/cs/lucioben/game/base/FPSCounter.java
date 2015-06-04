@@ -1,3 +1,11 @@
+/** 
+ * This is an FPS counter
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.base;
 
 import org.lwjgl.Sys;
@@ -13,6 +21,9 @@ public class FPSCounter {
 		lastFPS = getTime();
 	}
 	
+	/**
+	 * @return the instance of this object
+	 */
 	public static FPSCounter getInstance(){
 		if(instance == null){
 			instance = new FPSCounter();
@@ -21,8 +32,7 @@ public class FPSCounter {
 		return instance;
 	}
 	
-	/** Gets how many milliseconds have passed since the last frame. */
-	public int getDelta() {
+	private int getDelta() {
 	    long time = getTime();
 	    int delta = (int) (time - lastFrame);
 	    lastFrame = time;
@@ -30,12 +40,13 @@ public class FPSCounter {
 	    return delta;
 	}
 
-	/** Gets the current system time. */
-	public long getTime() {
+	private long getTime() {
 	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
  
-	/** Updates the FPS count */
+	/**
+	 * Updates the FPS count
+	 */
 	public void updateFPS() {
 		//TODO Change this to display on screen.
 		

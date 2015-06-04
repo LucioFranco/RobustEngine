@@ -1,3 +1,11 @@
+/** 
+ * The player object
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.GameObjects;
 
 import org.lwjgl.input.Keyboard;
@@ -16,6 +24,13 @@ public class Player extends GameObject implements Healthable {
 	private boolean mouseClicked = false;
 	private int health = 100;
 	
+	/**
+	 * The constructor for player. 
+	 * @param i the width
+	 * @param j the height
+	 * @param rotation the rotation
+	 * @param position the starting position.
+	 */
 	public Player(int i, int j, float rotation, Vector2f position) {
 		super(i, j, rotation, position);
 		
@@ -23,6 +38,14 @@ public class Player extends GameObject implements Healthable {
 		this.setBoundingBoxHeight(64);
 	}
 	
+	/**
+	 * The constructor for player. 
+	 * @param i the width
+	 * @param j the height
+	 * @param rotation the rotation
+	 * @param position the starting position.
+	 * @param path the path of the file location. 
+	 */
 	public Player(int i, int j, float rotation, Vector2f position, String path) {
 		super(i, j, rotation, position, path);
 		
@@ -30,6 +53,9 @@ public class Player extends GameObject implements Healthable {
 		this.setBoundingBoxHeight(64);
 	}
 
+	/**
+	 * Updates the player object.
+	 */
 	@Override
 	public void update() {
 		this.SPEED = 10;
@@ -61,14 +87,26 @@ public class Player extends GameObject implements Healthable {
 		this.setRotation(-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)));
 	}
 	
+	/**
+	 * Makes the player shoot a bullet in the direction he is facing. 
+	 */
 	public void shoot(){
 		Game.getCurrentScene().add(new Bullet(this.getPosition(), (-(float)(Math.atan2(Mouse.getY() - Game.getScreenHeight()/2, Mouse.getX() - Game.getScreenWidth()/2) * (180/Math.PI)))));
 	}
 	
+	/**
+	 * Inflict damage on the player.
+	 * @param amount The amount of damage to inflict. 
+	 */
 	public void takeDamage(float amount){
 		health -= amount;
 	}
-		
+	
+	/**
+	 * Sets the position of the player. 
+	 * @param direction the direction to move in.
+	 * @param distance the distance to move.
+	 */
 	public void setPosition(Vector2f direction, float distance){	
 		Vector2f futurePosition = this.getPosition();
 		Vector2f previousPosition = this.getPosition();
@@ -104,6 +142,9 @@ public class Player extends GameObject implements Healthable {
 		this.setPosition(previousPosition);
 	}
 
+	/**
+	 * Draws the player
+	 */
 	@Override
 	public void draw() {
 		GL11.glRotatef(this.getRotation(), 0, 0, 1);
@@ -122,14 +163,18 @@ public class Player extends GameObject implements Healthable {
 		GL11.glEnd();
 	}
 		
+	/**
+	 * Checks if the player is colliding.
+	 * @return if the player is colliding with another object. 
+	 */
 	public boolean isColliding(){
 		return isColliding;
 	}
 	
-	public void setColliding(boolean t){
-		isColliding = t;
-	}
-	
+	/**
+	 * Gets the health of the player.
+	 * @return the health of the player. 
+	 */
 	public int getHealth(){
 		return health;
 	}

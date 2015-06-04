@@ -1,3 +1,11 @@
+/** 
+ * A variation of map tile that allows multiple layers of textures. 
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.GameObjects.base;
 
 import org.lwjgl.opengl.GL11;
@@ -9,18 +17,31 @@ public class MutliLayerObject extends GameObject {
 	private GameObject obj;
 	private MapTile tile;
 	
+	/**
+	 * The constructor for the MultiLayerObject
+	 * @param width the width of the tile
+	 * @param height the height of the tile
+	 * @param obj the object that will overlay the tile
+	 * @param tile the tile that is under the object
+	 */
 	public MutliLayerObject(int width, int height, GameObject obj, MapTile tile) {
 		super(96, 96, 0, new Vector2f(0, 0));
 		this.obj = obj;
 		this.tile = tile;
 	}
 
+	/**
+	 * Updates the tile and object
+	 */
 	@Override
 	public void update() {
 		obj.update();
 		tile.update();
 	}
 
+	/**
+	 * Draws the tile underneath the object. 
+	 */
 	@Override
 	public void draw() {
 		tile.setPosition(this.getPosition());

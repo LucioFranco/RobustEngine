@@ -1,3 +1,11 @@
+/** 
+ * The health bar
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.GameObjects;
 
 import org.lwjgl.opengl.GL11;
@@ -14,6 +22,11 @@ public class Health extends GameObject {
 	private static int width = 100;
 	private static int height = 10;
 	
+	/**
+	 * The constructor the the health bar
+	 * @param path the path of the texture file
+	 * @param obj the object that is healable 
+	 */
 	public Health(String path, Healthable obj) {
 		super(width, height, 0, new Vector2f(0, 0), path);
 		super.setType(GameObjectType.TEXT);
@@ -22,6 +35,9 @@ public class Health extends GameObject {
 		scale = (this.getWidth() / maxValue);
 	}
 
+	/**
+	 * Updates the health bar
+	 */
 	@Override
 	public void update() {
 		value = obj.getHealth();
@@ -32,6 +48,9 @@ public class Health extends GameObject {
 		return;
 	}
 
+	/**
+	 * Draws the health bar
+	 */
 	@Override
 	public void draw() {
 		this.getTexture().bind();

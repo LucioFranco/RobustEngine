@@ -1,3 +1,11 @@
+/** 
+ * The enemy object
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.GameObjects;
 
 import org.lwjgl.opengl.GL11;
@@ -21,6 +29,11 @@ public class Enemy extends GameObject implements Healthable {
 	private float playerBuffer = 500;
 	private Health healthBar;
 	
+	/**
+	 * The constructor for the endtile 
+	 * @param startingPosition the starting position of the enemy
+	 * @param bg the Map tile under the enemy.  
+	 */
 	public Enemy(Vector2f startingPosition, Player player, MapTile bg){
 		super(WIDTH, HEIGHT, 0, startingPosition);
 		this.healthBar = new Health("res/images/health.png", this);
@@ -32,6 +45,9 @@ public class Enemy extends GameObject implements Healthable {
 		this.setBoundingBoxWidth(64);
 	}
 	
+	/**
+	 * Updates the enemy
+	 */
 	@Override
 	public void update() {
 		if(health <= 0){
@@ -56,16 +72,26 @@ public class Enemy extends GameObject implements Healthable {
 		this.healthBar.update();
 	}
 	
+	/**
+	 * Inflict damage upon the enemy. 
+	 * @param amount the amount of damage to inflict
+	 */
 	public void takeDamage(float amount){
 		health -= amount;
 	}
 	
+	/**
+	 * Makes the enemy shoot
+	 */
 	public void shoot(){
 		Bullet bullet = new Bullet(this.getPosition(), this.getRotation());
 		bullet.setEnemyBullet(true);
 		Game.getCurrentScene().add(bullet);
 	}
 	
+	/**
+	 * Draws the enemy
+	 */
 	@Override
 	public void draw() {
 		bg.getTexture().bind();
@@ -104,6 +130,10 @@ public class Enemy extends GameObject implements Healthable {
 		GL11.glEnd();
 	}
 
+	/**
+	 * Gets the enemies health.
+	 * @return the health of the enemy
+	 */
 	@Override
 	public int getHealth() {
 		return this.health;

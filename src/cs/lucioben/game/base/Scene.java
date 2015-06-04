@@ -1,3 +1,11 @@
+/** 
+ * The abstract class for a scene
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.base;
 
 import java.io.FileInputStream;
@@ -11,22 +19,39 @@ public abstract class Scene {
 	private HashMap<String, GameObject> MapKeywords;
 	private String MapFile;
 	
+	/**
+	 * The constructor for a scene. 
+	 */
 	public Scene() {
 		 this(null);
 	}
 	
+	/**
+	 * Loads a map file into a scene. 
+	 * @param MapFile the file to load in. 
+	 */
 	public Scene(String MapFile) {
 		this.MapFile = MapFile;
 		this.SceneObjects = new ArrayList<GameObject>();
 		this.MapKeywords = new HashMap<String, GameObject>();
 	}
 	
+	/**
+	 * An abstract setup method.
+	 */
 	public abstract void setup();
 	
+	/**
+	 * Goes to the next scene. 
+	 */
 	public static Scene nextScene() {
 		return null;
 	}
 
+	/**
+	 * Adds a game object to the scene. 
+	 * @param obj The object to add
+	 */
 	public void add(GameObject obj) {
 		ArrayList<GameObject> newList = new ArrayList<>();
 		
@@ -38,14 +63,27 @@ public abstract class Scene {
 		SceneObjects = newList;
 	}
 	
+	/**
+	 * Adds a map tile to the scene. 
+	 * @param key the map key
+	 * @param obj the object to add associated with the key. 
+	 */
 	public void addMapTile(String key, GameObject obj) {
 		this.MapKeywords.put(key, obj);
 	}
 	
+	/**
+	 * Sets the map file name
+	 * @param str the map file name 
+	 */
 	public void setMapFileName(String str) {
 		this.MapFile = str;
 	}
 	
+	/**
+	 * Remove a game object from the scene. 
+	 * @param obj the object to remove. 
+	 */
 	public void remove(GameObject obj){
 		ArrayList<GameObject> newList = new ArrayList<>();
 		
@@ -57,15 +95,25 @@ public abstract class Scene {
 		SceneObjects = newList;
 	}
 
+	/**
+	 * Gets a list of the scene objects. 
+	 * @return an arraylist of gameobjects in the scene. 
+	 */
 	public ArrayList<GameObject> getSceneObjects() {
 		return SceneObjects;
 	}
 	
+	/**
+	 * Cleans the scene. 
+	 */
 	public void clean() {
 		this.SceneObjects = new ArrayList<GameObject>();
 		this.MapKeywords = new HashMap<String, GameObject>();
 	}
 	
+	/**
+	 * Converts the scene into a string. 
+	 */
 	public String toString() {
 		String temp = this.getClass().getName() + "\n";
 		for(GameObject obj : this.SceneObjects) {
@@ -74,6 +122,9 @@ public abstract class Scene {
 		return temp;
 	}
 	
+	/**
+	 * Loads assets into the map.
+	 */
 	public void loadAssets(){
 		//Loads in assets in a very specific format based on input file.
 		//In the file, '-'s are walls. 

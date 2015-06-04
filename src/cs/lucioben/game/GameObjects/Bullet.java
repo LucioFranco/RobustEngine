@@ -1,3 +1,11 @@
+/** 
+ * The bullet class, represents a bullet object.
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.GameObjects;
 
 import org.lwjgl.opengl.GL11;
@@ -15,6 +23,11 @@ public class Bullet extends GameObject{
 	private boolean enemyBullet = false; 
 	private float damage = 10;
 	
+	/**
+	 * The constructor for the bullet
+	 * @param startingPosition The position to start the bullet at. 
+	 * @param rotation The rotation to face the the bullet.
+	 */
 	public Bullet(Vector2f startingPosition, float rotation){
 		super(WIDTH, HEIGHT, 0, startingPosition);
 
@@ -24,6 +37,9 @@ public class Bullet extends GameObject{
 		velocity = new Vector2f((float)Math.cos(Math.toRadians(rotation)), (float)Math.sin(Math.toRadians(rotation))); 
 	}
 	
+	/**
+	 * Updates the bullet
+	 */
 	@Override
 	public void update() {
 		this.setPosition(velocity, SPEED);
@@ -33,18 +49,35 @@ public class Bullet extends GameObject{
 		}
 	}
 	
+	/**
+	 * Sets a bullet as an enemy bullet
+	 * @param t the value of enemyBullet
+	 */
 	public void setEnemyBullet(boolean t){
 		enemyBullet = t;
 	}
 	
+	/**
+	 * Gets the enemy bullet
+	 * @return if the bullet is an enemy bullet. 
+	 */
 	public boolean getEnemyBullet(){
 		return enemyBullet; 
 	}
 	
+	/**
+	 * Gets the damage of the bullet
+	 * @return the bullet's damage. 
+	 */
 	public float getDamage(){
 		return damage;
 	}
 	
+	/**
+	 * Sets the position of the bullet
+	 * @param direction the direction of movement.
+	 * @param distance the distance the bullet must move. 
+	 */
 	public void setPosition(Vector2f direction, float distance){	
 		Vector2f futurePosition = this.getPosition();
 		Vector2f previousPosition = this.getPosition();
@@ -92,6 +125,9 @@ public class Bullet extends GameObject{
 		}
 	}
 	
+	/**
+	 * Draws the bullet. 
+	 */
 	@Override
 	public void draw() {
 		GL11.glRotatef(this.getRotation(), 0, 0, 1);

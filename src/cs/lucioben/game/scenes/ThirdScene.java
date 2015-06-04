@@ -1,3 +1,11 @@
+/** 
+ * The third scene that is displayed after the title screen
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.scenes;
 
 import org.lwjgl.util.vector.Vector2f;
@@ -12,6 +20,9 @@ import cs.lucioben.game.base.Scene;
 
 public class ThirdScene extends Scene {
 
+	/**
+	 * Sets up the scene
+	 */
 	@Override
 	public void setup() {
 		MapTile wall = new MapTile(96, 96, "res/images/wall.png", GameObjectType.COLLISON), 

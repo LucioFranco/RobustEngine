@@ -1,3 +1,11 @@
+/** 
+ * The state class for state management
+ * 
+ * @author Lucio Franco and Benjamin Snoha
+ * @version 1.0 
+ * @since June 2, 2015
+ */
+
 package cs.lucioben.game.base;
 
 import java.util.Iterator;
@@ -10,6 +18,11 @@ public class State implements Iterator {
 	private int index;
 	private Scene currentScene;
 	private boolean tempScene;
+	
+	/**
+	 * The constructor for a scene. 
+	 * @param sceneList the list of scenes in the game. 
+	 */
 	public State(Scene[] sceneList) {
 		this.sceneList = sceneList;
 		this.index = -1;
@@ -17,26 +30,45 @@ public class State implements Iterator {
 		this.tempScene = false;
 	}
 	
+	/**
+	 * Gets the current scene. 
+	 * @return the current scene. 
+	 */
 	public Scene getCurrentScene() {
 		return this.currentScene;
 	}
 	
+	/**
+	 * Transition to another scene.
+	 * @param scene The scene to transition to. 
+	 */
 	public void transitionTo(Scene scene) {
 		this.tempScene = true;
 		this.currentScene = scene;
 		this.loadScene(this.currentScene);
 	}
 	
+	/**
+	 * Transition to another scene.
+	 * @param scene The index of the scene to transition to. 
+	 */
 	public void transitionTo(int i) {
 		this.tempScene = false;
 		this.currentScene = this.sceneList[i];
 		this.loadScene(this.currentScene);
 	}
 	
+	/**
+	 * @return the index
+	 */
 	public int getIndex() {
 		return this.index;
 	}
 	
+	/**
+	 * Goes back to the previous scene.
+	 * @return the scene to return to. 
+	 */
 	public Scene back() {
 		if(!tempScene) {
 			index--;
@@ -46,6 +78,10 @@ public class State implements Iterator {
 		return this.currentScene;
 	}
 	
+	/**
+	 * Transition to another scene.
+	 * @return if there is another scene. 
+	 */
 	@Override
 	public boolean hasNext() {
 		if(this.sceneList == null || this.index == this.sceneList.length - 1) {
@@ -54,6 +90,11 @@ public class State implements Iterator {
 			return true;
 		}
 	}
+	
+	/**
+	 * Transition to the next scene.
+	 * @return the next scene. 
+	 */
 	@Override
 	public Scene next() {
 		if(!hasNext()) {
@@ -67,11 +108,6 @@ public class State implements Iterator {
 			this.loadScene(this.currentScene);
 			return this.currentScene;
 		}
-	}
-	@Override
-	public void remove() {
-		// TODO find better fix for this
-		System.err.println("State remove does nothing sorry :(");
 	}
 	
 	private void loadScene(Scene scene) {

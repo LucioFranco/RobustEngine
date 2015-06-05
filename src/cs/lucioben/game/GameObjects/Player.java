@@ -34,8 +34,8 @@ public class Player extends GameObject implements Healthable {
 	public Player(int i, int j, float rotation, Vector2f position) {
 		super(i, j, rotation, position);
 		
-		this.setBoundingBoxWidth(64);
-		this.setBoundingBoxHeight(64);
+		this.setBoundingBoxWidth(30);
+		this.setBoundingBoxHeight(30);
 	}
 	
 	/**

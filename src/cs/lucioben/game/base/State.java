@@ -115,4 +115,14 @@ public class State implements Iterator {
 		scene.setup();
 		scene.loadAssets();
 	}
+
+	@Override
+	public void remove() {
+		try {
+			throw new Exception("Method does not exsist");
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+	}
 }

@@ -4,6 +4,9 @@ apply plugin: 'eclipse'
 version = '1.0'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
+javadoc.destinationDir = new File('docs')
+
+javadoc.classpath = configurations.compile
 
 task buildJar(type: Jar) {
 	manifest {

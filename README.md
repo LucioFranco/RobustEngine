@@ -1,4 +1,4 @@
-https://docs.google.com/presentation/d/1fhRNdKmMCgZKzIMOmU5tnckwLl_JvwAjkw_vCzMQdgc/edit?usp=sharing
+[![Build Status](https://travis-ci.org/LucioFranco/RobustEngine.svg?branch=master)](https://travis-ci.org/LucioFranco/RobustEngine)
 
 To run you must include the three jars inthe lib/jars folder. Then you
 must set the natives for eclipse. the natvies are in the natives folder. If you have problems running the

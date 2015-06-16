@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version = '1.0'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+task buildJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Robust Engine',
+        	'Implementation-Version': version,
+        	'Main-Class': 'cs.lucioben.base.Game'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile fileTree(dir: 'lib/jars', include: ['*.jar'])
+    testCompile "junit:junit:4.11"
+}

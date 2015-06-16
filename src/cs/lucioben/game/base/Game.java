@@ -24,6 +24,8 @@ public class Game {
 	private static ArrayList<GameObject> GameObjectList;
 	private static Vector2f cameraOffset;
 	private static Vector2f screenOffset;
+	
+	private static String pathToFont;
 
 	public State state;
 
@@ -159,6 +161,21 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Sets the games font
+	 * @param path to font
+	 */
+	public static void setFontPath(String path) {
+		Game.pathToFont = path;
+	}
+	
+	/**
+	 * Gets the global font path
+	 * @return font path
+	 */
+	public static String getFontPath() {
+		return Game.pathToFont;
+	}
 	
 	/**
 	 * The main class for the game. 

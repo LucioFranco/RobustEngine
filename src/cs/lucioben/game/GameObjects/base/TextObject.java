@@ -11,11 +11,14 @@ package cs.lucioben.game.GameObjects.base;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
+
+import cs.lucioben.game.base.Game;
 import cs.lucioben.game.base.GameObject;
 import cs.lucioben.game.base.GameObjectType;
 
@@ -58,7 +61,7 @@ public class TextObject extends GameObject {
 			this.str = str;
 			this.color = color;
 			this.size = size;
-			this.font = new TrueTypeFont(Font.createFont(Font.TRUETYPE_FONT, ResourceLoader.getResourceAsStream("/res/fonts/Plump.ttf")).deriveFont(size), true);
+			this.font = new TrueTypeFont(Font.createFont(Font.TRUETYPE_FONT, ResourceLoader.getResourceAsStream(Game.getFontPath())).deriveFont(size), true);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
